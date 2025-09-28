@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace MakFood.Customer.Domain.Models.Entities.User
 {
-    public class UserAccount
+    public class User
     {
-        public UserAccount(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo, List<Address> addresses)
+        public User(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo, List<Address> addresses)
         {
             id = Guid.NewGuid();
-
             this.identity = identity;
             this.account = account;
             this.contactinfo = contactinfo;
