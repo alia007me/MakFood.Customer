@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace MakFood.Customer.Domain.Models.Entities.Enums
 {
-    internal class Badge
+    public enum Badge
     {
+        Normal,
+        Bronze,
+        Silver,
+        Gold,
+        Diamond
     }
 }
