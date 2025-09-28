@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Customer.Application.Interfaces
 {
-    internal interface IFriendshipRepsitory
+    public interface IFriendshipRepsitory
     {
     }
 }
