@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Customer", "MakFood.Customer\MakFood.Customer.csproj", "{78CDA8B9-F89E-480B-A20A-7D611E87386A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Customer.Domian.Entities", "MakFood.Customer.Domian.Entities\MakFood.Customer.Domian.Entities.csproj", "{6F09D7D9-56A8-45AC-9DF1-087F4E3F549C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Appliation", "Appliation", "{71B4AD05-9364-4B27-BD91-5421C36B54FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Customer.Application", "Application\MakFood.Customer.Application.csproj", "{7464C382-FF8B-4877-ADAC-4504455E7B9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{25EB89F1-7A7D-4285-A8F8-BEB063190E90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E249E9DF-EFD7-4F2D-BD5B-ADBBC03B07B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakFood.Customer.Presentation", "MakFood.Customer.Presentation\MakFood.Customer.Presentation.csproj", "{542DD155-8D20-4E5E-BB61-47D41AF04AAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78CDA8B9-F89E-480B-A20A-7D611E87386A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78CDA8B9-F89E-480B-A20A-7D611E87386A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78CDA8B9-F89E-480B-A20A-7D611E87386A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78CDA8B9-F89E-480B-A20A-7D611E87386A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F09D7D9-56A8-45AC-9DF1-087F4E3F549C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F09D7D9-56A8-45AC-9DF1-087F4E3F549C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F09D7D9-56A8-45AC-9DF1-087F4E3F549C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F09D7D9-56A8-45AC-9DF1-087F4E3F549C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7464C382-FF8B-4877-ADAC-4504455E7B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7464C382-FF8B-4877-ADAC-4504455E7B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7464C382-FF8B-4877-ADAC-4504455E7B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7464C382-FF8B-4877-ADAC-4504455E7B9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542DD155-8D20-4E5E-BB61-47D41AF04AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542DD155-8D20-4E5E-BB61-47D41AF04AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542DD155-8D20-4E5E-BB61-47D41AF04AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542DD155-8D20-4E5E-BB61-47D41AF04AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{78CDA8B9-F89E-480B-A20A-7D611E87386A} = {E249E9DF-EFD7-4F2D-BD5B-ADBBC03B07B1}
+		{6F09D7D9-56A8-45AC-9DF1-087F4E3F549C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7464C382-FF8B-4877-ADAC-4504455E7B9F} = {71B4AD05-9364-4B27-BD91-5421C36B54FC}
+		{542DD155-8D20-4E5E-BB61-47D41AF04AAA} = {E249E9DF-EFD7-4F2D-BD5B-ADBBC03B07B1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EB809D3-7E80-42B1-A7BF-CE17CE7B3D77}
+	EndGlobalSection
+EndGlobal
