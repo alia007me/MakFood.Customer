@@ -9,6 +9,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     public class User
     {
         public User(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo, List<Address> addresses)
+        public User(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo)
         {
             id = Guid.NewGuid();
             this.identity = identity;
