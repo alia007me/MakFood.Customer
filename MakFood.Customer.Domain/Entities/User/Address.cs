@@ -35,7 +35,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public void ValidityCheckTitle(string title)
         {
             if (title == null) throw new Exception("Your title can't be null");
-            string titleRegex = "([a-zA-Z0-9 _ \\s]+)";
+            string titleRegex = "([a-zA-Z0-9 \\s]+)";
             if (!Regex.IsMatch(title, titleRegex)) throw new Exception("You can only use A-Z a-z and space.");
         }
 
@@ -48,7 +48,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public void ValidityPostalCode(string postalCode)
         {
             if (postalCode == null) throw new Exception("Your PostalCode can't be null");
-            string postalcodeRegex = "([0-9])";
+            string postalcodeRegex = @"^\d{10}$";
             if (!Regex.IsMatch(postalCode, postalcodeRegex)) throw new Exception("you can only use 0-9");
         }
     }
