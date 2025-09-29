@@ -10,15 +10,16 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     public class Address
     {
         public Address(string title, string streetNumber, uint houseNumber, uint unitNo, string postalCode)
+        public Address(string title, string streetAddres, uint houseNumber, uint unitNo, string postalCode)
         {
             id = Guid.NewGuid();
 
             ValidityCheckTitle(title);
-            ValidityCheckStreetAddress(streetNumber);
+            ValidityCheckStreetAddress(streetAddres);
 
 
             this.title = title;
-            this.streetNumber = streetNumber;
+            this.streetAddres = streetAddres;
             this.houseNumber = houseNumber;
             this.unitNo = unitNo;
             this.postalCode = postalCode;
@@ -26,7 +27,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
 
         public Guid id { get; set; }
         public string title { get; set; }
-        public string streetNumber { get; set; }
+        public string streetAddres { get; set; }
         public uint houseNumber { get; set; }
         public uint unitNo { get; set; }
         public string postalCode { get; set; }
