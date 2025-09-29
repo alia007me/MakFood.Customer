@@ -21,8 +21,12 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public IdentityInformation identity { get; set; }
         public AccountInformation account { get; set; }
         public ContactInformation contactinfo { get; set; }
-        public List<Address> addresses { get; set; }
+        public List<Address>? addresses { get; set; }
 
 
+        public void AddAddres(Address address)
+        {
+            addresses.Add(address);
+        }
     }
 }
