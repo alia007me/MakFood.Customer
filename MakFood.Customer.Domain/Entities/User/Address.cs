@@ -16,6 +16,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
 
             ValidityCheckTitle(title);
             ValidityCheckStreetAddress(streetAddres);
+            ValidityPostalCode(postalCode);
 
 
             this.title = title;
