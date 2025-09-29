@@ -22,11 +22,6 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public string? profilePicture { get; set; }
         public Badge Badge { get; set; }
 
-        public void SetReplaceProfilePicture(string URL)
-        {
-            ValidityCheckProfileURL(URL);
-            profilePicture = URL;
-        }
 
         public void ValidityCheckProfileURL(string URL)
         {
@@ -39,6 +34,11 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             if (!Regex.IsMatch(URL, UMLCheckRegex)) throw new Exception("Your URL is not valid");
         }
 
+        public void SetReplaceProfilePicture(string URL)
+        {
+            ValidityCheckProfileURL(URL);
+            profilePicture = URL;
+        }
         public void RemoveprofilePicture()
         {
             profilePicture = null;
