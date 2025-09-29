@@ -37,6 +37,10 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             DateOnly max = birthDate.AddYears(-150);
             if (birthDate >= DateOnly.FromDateTime(DateTime.Now) || birthDate <= max) throw new Exception("please enter valid birthDate");
 
+        public void AddReplaceBirthDate(DateOnly BirthDate)
+        {
+            ValidityCheckBirthDate(BirthDate);
+            birthDate = BirthDate;
         }
     }
 }
