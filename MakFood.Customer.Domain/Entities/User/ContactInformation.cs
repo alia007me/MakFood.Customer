@@ -18,8 +18,6 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         }
         public Guid id { get; set; }
         public string phoneNumber { get; set; }
-
-
         public string? email { get; set; }
 
         public void ValidityCheckphoneNumber(string phoneNumber)
