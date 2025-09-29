@@ -6,16 +6,26 @@ using System.Threading.Tasks;
 
 namespace MakFood.Customer.Domain.Models.Entities.User
 {
+    /// <summary>
+    /// این کلاس تمام اطلاعات کاربر را در خود قرار می دهد
+    /// </summary>
+    /// <remarks>
+    /// شامل یک متد برای اضافه کردن آدرس می باشد
+    /// </remarks>
     public class User
     {
-        public User(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo, List<Address> addresses)
+        /// <summary>
+        /// کانستراکتور اطلاعات مربوط به کاربر
+        /// </summary>
+        /// <param name="identity">هویتی</param>
+        /// <param name="account">اکانت</param>
+        /// <param name="contactinfo">ارتباطی</param>
         public User(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo)
         {
             id = Guid.NewGuid();
             this.identity = identity;
             this.account = account;
             this.contactinfo = contactinfo;
-            this.addresses = addresses;
         }
 
         public Guid id { get; set; }
@@ -25,6 +35,10 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public List<Address>? addresses { get; set; }
 
 
+        /// <summary>
+        /// متد برای اضافه کردن آدرس به لیست آدرس
+        /// </summary>
+        /// <param name="address"></param>
         public void AddAddres(Address address)
         {
             addresses.Add(address);
