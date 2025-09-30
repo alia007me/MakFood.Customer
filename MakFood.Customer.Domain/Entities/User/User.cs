@@ -10,10 +10,12 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// این کلاس تمام اطلاعات کاربر را در خود قرار می دهد
     /// </summary>
     /// <remarks>
-    /// شامل یک متد برای اضافه کردن آدرس می باشد
+    /// شامل دو متد برای اضافه کردن و پاک کردن آدرس یوزر می باشد
     /// </remarks>
     public class User
     {
+        private List<Address> _address;
+
         /// <summary>
         /// کانستراکتور اطلاعات مربوط به کاربر
         /// </summary>
@@ -28,11 +30,11 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             this.Contactinfo = contactinfo;
         }
 
-        public Guid Id { get; set; }
+        public Guid Id { get;private init; }
         public IdentityInformation Identity { get; set; }
         public AccountInformation Account { get; set; }
         public ContactInformation Contactinfo { get; set; }
-        public List<Address>? Addresses { get; set; }
+        public IEnumerable<Address>? Addresses { get => _address.AsReadOnly(); }
 
 
         /// <summary>
@@ -41,7 +43,21 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="address"></param>
         public void AddAddres(Address address)
         {
-            Addresses.Add(address);
+            if (Addresses == null) throw new Exception("Address can't be Null");
+
+            _address.Add(address);
+        }
+
+        /// <summary>
+        /// آدرس را حذف می کند
+        /// </summary>
+        /// <param name="address"></param>
+        /// <exception cref="Exception"></exception>
+        public void DeleteAddres(Address address)
+        {
+            if (Addresses == null) throw new Exception("Address can't be Null");
+
+            _address.Remove(address);
         }
     }
 }
