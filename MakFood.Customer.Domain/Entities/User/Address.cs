@@ -12,7 +12,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </summary>
     /// <remarks>
     /// شامل مقادیر تایتل، آدرس خیابان، شماره پلاک، شماره واحد و کد پستی می باشد
-    /// همچنین دارای سه متد صحت سنجی برای ورودی های تایتل، آدرس خیابان و کد پستی می باشد
+    /// و برای متد ها بعلاوه ولیدیشن ها، شامل آپدیت همه موارد بعلاوه دیلیت کردن موارد کد پستی و شماره واحد می باشد
     /// </remarks>
     public class Address
     {
@@ -24,28 +24,25 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="houseNumber">شماره پلاک</param>
         /// <param name="unitNo">شماره واحد</param>
         /// <param name="postalCode">کد پستی</param>
-        public Address(string title, string streetAddres, uint houseNumber, uint unitNo, string postalCode)
+        public Address(string title, string streetAddres, uint houseNumber)
         {
             Id = Guid.NewGuid();
 
             ValidityCheckTitle(title);
             ValidityCheckStreetAddress(streetAddres);
-            ValidityPostalCode(postalCode);
-
 
             this.Title = title;
             this.StreetAddres = streetAddres;
             this.HouseNumber = houseNumber;
-            this.UnitNo = unitNo;
-            this.PostalCode = postalCode;
+            
         }
 
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public string StreetAddres { get; set; }
-        public uint HouseNumber { get; set; }
-        public uint UnitNo { get; set; }
-        public string PostalCode { get; set; }
+        public Guid Id { get; private init; }
+        public string Title { get; private set; }
+        public string StreetAddres { get; private set; }
+        public uint HouseNumber { get;private set; }
+        public uint? UnitNo { get;private set; }
+        public string? PostalCode { get; private set; }
 
 
         /// <summary>
@@ -82,6 +79,74 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             if (postalCode == null) throw new Exception("Your PostalCode can't be null");
             string postalcodeRegex = @"^\d{10}$";
             if (!Regex.IsMatch(postalCode, postalcodeRegex)) throw new Exception("you can only use 0-9");
+        }
+
+        /// <summary>
+        /// تایتل را آپدیت می کند
+        /// </summary>
+        /// <param name="title">نام نمایشی آدرس</param>
+        public void UpdateTitle(string title)
+        {
+            ValidityCheckTitle(title);
+            Title = title;
+        }
+
+        /// <summary>
+        /// آدرس خیابان را آپدیت می کند
+        /// </summary>
+        /// <param name="streetAddres">آدرس خیابان</param>
+        public void UpdateStreetAddres(string streetAddres)
+        {
+            ValidityCheckStreetAddress(streetAddres);
+            StreetAddres = streetAddres;
+        }
+
+        /// <summary>
+        /// شماره خانه (پلاک) را آپدیت می کند
+        /// </summary>
+        /// <param name="houseNumber">پلاک</param>
+        public void UpdateHouseNumber(uint houseNumber)
+        { 
+            HouseNumber = houseNumber;
+        }
+
+        /// <summary>
+        /// کد پستی را آپدیت می کند
+        /// </summary>
+        /// <param name="postalCode">آپدیت کد پستی</param>
+        public void UpdatePostalCode(string postalCode)
+        {
+            ValidityPostalCode(postalCode);
+            PostalCode = postalCode;
+        }
+
+        /// <summary>
+        /// شماره واحد را آپدیت می کند
+        /// </summary>
+        /// <param name="unitNo">شماره واحد</param>
+        /// <exception cref="Exception">نمیتواند نال باشد</exception>
+        public void UpdateUnitNo(string unitNo)
+        {
+            if (unitNo == null) throw new Exception("input of update Unit cant be null");
+            if (!uint.TryParse(unitNo, out uint value)) throw new Exception("please Enter Natural Number");
+
+            UnitNo = uint.Parse(unitNo); 
+        }
+
+        /// <summary>
+        /// کد پستی را حذف می کند
+        /// </summary>
+        public void DeletePostalCode()
+        {
+            PostalCode = null;
+        }
+        
+        /// <summary>
+        /// شماره واحد را حذف می کند
+        /// </summary>
+        public void DeleteUnitNo()
+        {
+            UnitNo = null;
         }
     }
 }

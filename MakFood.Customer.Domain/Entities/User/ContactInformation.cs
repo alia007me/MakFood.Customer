@@ -11,7 +11,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// این کلاس اطلاعات ارتباطی مربوط به کاربر را ذخیره می کند
     /// </summary>
     /// <remarks>
-    /// این کلاس شامل شامل ایمیل و شماره تلفن و همچنین دو متد صحت سنجی برای هر دو و یک متد برای ذخیره متد جدید می باشد
+    /// این کلاس شامل شامل ایمیل و شماره تلفن می باشد
+    /// دارای متد های ولیدیشن برای این دو و آپدیت شماره تلفن و ایمیل، و حذف ایمیل می باشد
     /// </remarks>
     public class ContactInformation
     {
@@ -26,9 +27,9 @@ namespace MakFood.Customer.Domain.Models.Entities.User
 
             this.PhoneNumber = phoneNumber;
         }
-        public Guid Id { get; set; }
-        public string PhoneNumber { get; set; }
-        public string? Email { get; set; }
+        public Guid Id { get; private init; }
+        public string PhoneNumber { get; private set; }
+        public string? Email { get; private set; }
 
         /// <summary>
         /// این متد شماره تلفن را صحت سنجی می کند
@@ -59,13 +60,31 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         }
 
         /// <summary>
-        /// این متد ابتدا ایمیل را صحت سنجی کرده و در جایگاه ایمیل قرار می دهد
+        /// ایمیل را در صورت وجود آپدیت و در صورت وجود نداشتن پر می کند
         /// </summary>
         /// <param name="email">ایمیل</param>
-        public void SetReplaceEmail(string email)
+        public void SetUpdateEmail(string email)
         {
             ValidityCheckEmail(email);
             Email = email;
+        }
+
+        /// <summary>
+        /// شماره تلفن را آپدیت می کند
+        /// </summary>
+        /// <param name="phoneNumber">شماره تلفن</param>
+        public void UpdatePhoneNumber(string phoneNumber)
+        {
+            ValidityCheckphoneNumber(phoneNumber);
+            PhoneNumber = phoneNumber;
+        }
+
+        /// <summary>
+        /// ایمیل را حذف می کند
+        /// </summary>
+        public void DeleteEmail()
+        {
+            Email = null;
         }
     }
 }

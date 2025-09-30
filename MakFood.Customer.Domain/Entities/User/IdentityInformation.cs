@@ -11,30 +11,32 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// این کلاس اطلاعات هویتی مربوط به کاربر را ذخیره می کند
     /// </summary>
     /// <remarks>
-    /// اطلاعات هویتی شامل نام و نام خانوادگی و تاریخ تولد می باشد و دو متد جهت صحت سنجی نام و تاریخ تولد وجود دارد
+    /// اطلاعات هویتی شامل نام و نام خانوادگی و تاریخ تولد می باشد
+    /// متد هایی جهت صحبت سنجی، آپدیت و دیلیت می باشد
     /// </remarks>
     public class IdentityInformation
     {
+        
         /// <summary>
         /// این کانستراکتور نام و نام خانوادگی را دریافت کرده و پس از صحت سنجی ثبت می کند
         /// </summary>
-        /// <param name="FirstName">نام</param>
-        /// <param name="LastName">نام خانوادگی</param>
+        /// <param name="firstName">نام</param>
+        /// <param name="lastName">نام خانوادگی</param>
         public IdentityInformation(string firstName, string lastName)
         {
             this.Id = Guid.NewGuid();
 
             ValidityCheckName(firstName);
             ValidityCheckName(lastName);
-
+            
             this.FirstName = firstName;
             this.LastName = lastName;
         }
 
-        public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateOnly? BirthDate { get; set; }
+        public Guid Id { get; private init; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public DateOnly? BirthDate { get; private set; }
 
         /// <summary>
         /// این متد نام و نام خانوادگی را صحت سنجی می کند
@@ -72,5 +74,34 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             ValidityCheckBirthDate(birthDate);
             BirthDate = birthDate;
         }
+
+        /// <summary>
+        /// نام را آپدیت می کند
+        /// </summary>
+        /// <param name="firstName"></param>
+        public void UpdateFirstName(string firstName)
+        {
+            ValidityCheckName(firstName);
+            FirstName = firstName;
+        }
+
+        /// <summary>
+        /// نام خانوادگی را آپدیت می کند
+        /// </summary>
+        /// <param name="lastName"></param>
+        public void UpdateLastName(string lastName)
+        {
+            ValidityCheckName(lastName);
+            LastName = lastName;
+        }
+
+        /// <summary>
+        /// تاریخ تولد را حذف می کند
+        /// </summary>
+        public void DeleteBirthDate()
+        {
+            BirthDate = null;
+        }
+
     }
 }
