@@ -22,17 +22,17 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="contactinfo">ارتباطی</param>
         public User(IdentityInformation identity, AccountInformation account, ContactInformation contactinfo)
         {
-            id = Guid.NewGuid();
-            this.identity = identity;
-            this.account = account;
-            this.contactinfo = contactinfo;
+            Id = Guid.NewGuid();
+            this.Identity = identity;
+            this.Account = account;
+            this.Contactinfo = contactinfo;
         }
 
-        public Guid id { get; set; }
-        public IdentityInformation identity { get; set; }
-        public AccountInformation account { get; set; }
-        public ContactInformation contactinfo { get; set; }
-        public List<Address>? addresses { get; set; }
+        public Guid Id { get; set; }
+        public IdentityInformation Identity { get; set; }
+        public AccountInformation Account { get; set; }
+        public ContactInformation Contactinfo { get; set; }
+        public List<Address>? Addresses { get; set; }
 
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="address"></param>
         public void AddAddres(Address address)
         {
-            addresses.Add(address);
+            Addresses.Add(address);
         }
     }
 }

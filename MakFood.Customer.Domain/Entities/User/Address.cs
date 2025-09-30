@@ -26,26 +26,26 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="postalCode">کد پستی</param>
         public Address(string title, string streetAddres, uint houseNumber, uint unitNo, string postalCode)
         {
-            id = Guid.NewGuid();
+            Id = Guid.NewGuid();
 
             ValidityCheckTitle(title);
             ValidityCheckStreetAddress(streetAddres);
             ValidityPostalCode(postalCode);
 
 
-            this.title = title;
-            this.streetAddres = streetAddres;
-            this.houseNumber = houseNumber;
-            this.unitNo = unitNo;
-            this.postalCode = postalCode;
+            this.Title = title;
+            this.StreetAddres = streetAddres;
+            this.HouseNumber = houseNumber;
+            this.UnitNo = unitNo;
+            this.PostalCode = postalCode;
         }
 
-        public Guid id { get; set; }
-        public string title { get; set; }
-        public string streetAddres { get; set; }
-        public uint houseNumber { get; set; }
-        public uint unitNo { get; set; }
-        public string postalCode { get; set; }
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+        public string StreetAddres { get; set; }
+        public uint HouseNumber { get; set; }
+        public uint UnitNo { get; set; }
+        public string PostalCode { get; set; }
 
 
         /// <summary>

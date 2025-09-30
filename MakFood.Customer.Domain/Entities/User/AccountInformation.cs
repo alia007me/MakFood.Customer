@@ -26,15 +26,15 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </remarks>
         public AccountInformation()
         {
-            id = Guid.NewGuid();
-            joinDate = DateOnly.FromDateTime(DateTime.Now);
-            Badge = 0;
+            Id = Guid.NewGuid();
+            JoinDate = DateOnly.FromDateTime(DateTime.Now);
+            Badge = Badge.Normal;
         }
 
-        public Guid id { get; set; }
-        public DateOnly joinDate { get; set; }
-        public string? profilePicture { get; set; }
-        public Badge Badge { get; set; }
+        public Guid Id { get; private init; }
+        public DateOnly JoinDate { get; private set; }
+        public string? ProfilePicture { get;private set; }
+        public Badge Badge { get; private set; }
 
 
         /// <summary>
@@ -47,15 +47,15 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// https://regexr.com/
         /// مراجعه کرده و پترن رو در اونجا پیاده سازی کنید
         /// </remarks>
-        public void ValidityCheckProfileURL(string URL)
+        public void ValidityCheckProfileURL(string url)
         {
-            string UMLCheckRegex = @"((http|https)://)(www.)?" +
+            string urlCheckRegex = @"((http|https)://)(www.)?" +
                                     "[a-zA-Z0-9@:%._\\+~#?&//=]" +
                                     "{2,256}\\.[a-z]" +
                                     "{2,6}\\b([-a-zA-Z0-9@:%" +
                                     "._\\+~#?&//=]*)";
 
-            if (!Regex.IsMatch(URL, UMLCheckRegex)) throw new Exception("Your URL is not valid");
+            if (!Regex.IsMatch(url, urlCheckRegex)) throw new Exception("Your URL is not valid");
         }
 
         /// <summary>
@@ -65,10 +65,10 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <remarks>
         /// در ابتدا صحت سنجی انجام می شود و پس از آن عکس جدید جای عکس قبلی را می گیرد
         /// </remarks>
-        public void SetReplaceProfilePicture(string URL)
+        public void SetReplaceProfilePicture(string url)
         {
-            ValidityCheckProfileURL(URL);
-            profilePicture = URL;
+            ValidityCheckProfileURL(url);
+            ProfilePicture = url;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         public void RemoveprofilePicture()
         {
-            profilePicture = null;
+            ProfilePicture = null;
         }
 
         /// <summary>

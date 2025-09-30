@@ -21,14 +21,14 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="phoneNumber">شماره تلفن کاربر</param>
         public ContactInformation(string phoneNumber)
         {
-            id = Guid.NewGuid();
+            Id = Guid.NewGuid();
             ValidityCheckphoneNumber(phoneNumber);
 
-            this.phoneNumber = phoneNumber;
+            this.PhoneNumber = phoneNumber;
         }
-        public Guid id { get; set; }
-        public string phoneNumber { get; set; }
-        public string? email { get; set; }
+        public Guid Id { get; set; }
+        public string PhoneNumber { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// این متد شماره تلفن را صحت سنجی می کند
@@ -39,8 +39,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         {
             if (string.IsNullOrEmpty(phoneNumber)) throw new Exception("Phone Number is Empty or Null");
 
-            var Reg = @"^(\+98|0)\d{10}$";
-            if (!Regex.IsMatch(phoneNumber, Reg)) throw new Exception("pls enter the valid phone number");
+            var reg = @"^(\+98|0)\d{10}$";
+            if (!Regex.IsMatch(phoneNumber, reg)) throw new Exception("pls enter the valid phone number");
 
         }
 
@@ -53,19 +53,19 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         {
             if (string.IsNullOrEmpty(email)) throw new Exception("Email is empty or null");
 
-            var Reg = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; ;
-            if (!Regex.IsMatch(email, Reg)) throw new Exception("pls enter the valid Email");
+            var reg = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; ;
+            if (!Regex.IsMatch(email, reg)) throw new Exception("pls enter the valid Email");
 
         }
 
         /// <summary>
         /// این متد ابتدا ایمیل را صحت سنجی کرده و در جایگاه ایمیل قرار می دهد
         /// </summary>
-        /// <param name="Email">ایمیل</param>
-        public void SetReplaceEmail(string Email)
+        /// <param name="email">ایمیل</param>
+        public void SetReplaceEmail(string email)
         {
-            ValidityCheckEmail(Email);
-            email = Email;
+            ValidityCheckEmail(email);
+            Email = email;
         }
     }
 }

@@ -18,23 +18,23 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <summary>
         /// این کانستراکتور نام و نام خانوادگی را دریافت کرده و پس از صحت سنجی ثبت می کند
         /// </summary>
-        /// <param name="firstName">نام</param>
-        /// <param name="lastName">نام خانوادگی</param>
+        /// <param name="FirstName">نام</param>
+        /// <param name="LastName">نام خانوادگی</param>
         public IdentityInformation(string firstName, string lastName)
         {
-            this.id = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
 
             ValidityCheckName(firstName);
             ValidityCheckName(lastName);
 
-            this.firstName = firstName;
-            this.lastName = lastName;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
-        public Guid id { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public DateOnly? birthDate { get; set; }
+        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateOnly? BirthDate { get; set; }
 
         /// <summary>
         /// این متد نام و نام خانوادگی را صحت سنجی می کند
@@ -43,8 +43,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <exception cref="Exception">نام نمیتواند نال، خالی و یا شامل کاراکتر های مختلف باشد</exception>
         public void ValidityCheckName(string name)
         {
-            string NameRegex = "([a-zA-Z0-9 \\s]+)";
-            if (!Regex.IsMatch(name, NameRegex)) throw new Exception("You can only use A-Z a-z and space.");
+            string nameRegex = "([a-zA-Z0-9 \\s]+)";
+            if (!Regex.IsMatch(name, nameRegex)) throw new Exception("You can only use A-Z a-z and space.");
 
         }
 
@@ -63,14 +63,14 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <summary>
         /// این متد تاریخ تولد را ثبت می کند و یا اگر وجود داشت تغییر می دهد
         /// </summary>
-        /// <param name="BirthDate">تاریخ تولد</param>
+        /// <param name="birthDate">تاریخ تولد</param>
         /// <remarks>
         /// ابتدا تاریخ را برسی و صحت سنجی می کند و پس از آن، آن را قرار می دهد
         /// </remarks>
-        public void AddReplaceBirthDate(DateOnly BirthDate)
+        public void AddReplaceBirthDate(DateOnly birthDate)
         {
-            ValidityCheckBirthDate(BirthDate);
-            birthDate = BirthDate;
+            ValidityCheckBirthDate(birthDate);
+            BirthDate = birthDate;
         }
     }
 }
