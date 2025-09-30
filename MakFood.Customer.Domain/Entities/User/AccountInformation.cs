@@ -38,27 +38,6 @@ namespace MakFood.Customer.Domain.Models.Entities.User
 
 
         /// <summary>
-        /// این متد با استفاده از رجکس صحت آدرس عکس وارد شده را برسی می کند
-        /// </summary>
-        /// <param name="URL">رشته آدرس تصویر</param>
-        /// <exception cref="Exception">مواردی شامل نال بودن و یا فرمت اشتباه در نظر گرفته می شود</exception>
-        /// <remarks>
-        /// برای تحلیل و مشاهده نتیجه رجکس پترن می توانید به سایت 
-        /// https://regexr.com/
-        /// مراجعه کرده و پترن رو در اونجا پیاده سازی کنید
-        /// </remarks>
-        public void ValidityCheckProfileURL(string url)
-        {
-            string urlCheckRegex = @"((http|https)://)(www.)?" +
-                                    "[a-zA-Z0-9@:%._\\+~#?&//=]" +
-                                    "{2,256}\\.[a-z]" +
-                                    "{2,6}\\b([-a-zA-Z0-9@:%" +
-                                    "._\\+~#?&//=]*)";
-
-            if (!Regex.IsMatch(url, urlCheckRegex)) throw new Exception("Your URL is not valid");
-        }
-
-        /// <summary>
         /// این متد عکس پروفایل جدید برای کاربر ثبت می کند
         /// </summary>
         /// <param name="URL"></param>
@@ -67,7 +46,6 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </remarks>
         public void SetReplaceProfilePicture(string url)
         {
-            ValidityCheckProfileURL(url);
             ProfilePicture = url;
         }
 
@@ -79,27 +57,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             ProfilePicture = null;
         }
 
-        /// <summary>
-        /// این متد رتبه کاربر را یه واحد ارتقا می دهد
-        /// </summary>
-        /// <remarks>
-        /// مربوطه صورت میگیرد enum این ارتقا بر اساس
-        /// </remarks>
-        public void UpgradeBadge()
-        {
-            Badge++;
-        }
 
-        /// <summary>
-        /// این متد رتبه کاربر را یه واحد کاهش می دهد
-        /// </summary>
-        /// <remarks>
-        /// مربوطه صورت میگیرد enum این ارتقا بر اساس
-        /// </remarks>
-        public void DeclineBadge()
-        {
-            Badge--;
-        }
 
 
 
