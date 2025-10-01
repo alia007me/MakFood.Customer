@@ -34,7 +34,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public IdentityInformation Identity { get; set; }
         public AccountInformation Account { get; set; }
         public ContactInformation Contactinfo { get; set; }
-        public IEnumerable<Address>? Addresses { get => _address.AsReadOnly(); }
+        public IReadOnlyList<Address>? Addresses { get => _address.AsReadOnly(); }
 
 
         /// <summary>
