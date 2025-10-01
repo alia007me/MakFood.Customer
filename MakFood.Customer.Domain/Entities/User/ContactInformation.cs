@@ -36,7 +36,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="phoneNumber">شماره تلفن</param>
         /// <exception cref="Exception">شماره تلفن نباید نال، خالی، و خارج از قالب شماره تلفن در ایران باشد</exception>
-        public void ValidityCheckphoneNumber(string phoneNumber)
+        private void ValidityCheckphoneNumber(string phoneNumber)
         {
             if (string.IsNullOrEmpty(phoneNumber)) throw new Exception("Phone Number is Empty or Null");
 
@@ -50,7 +50,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="email">ایمیل</param>
         /// <exception cref="Exception">ایمیل نباید نال، خالی، و خارج از قالب ایمیل باشد</exception>
-        public void ValidityCheckEmail(string email)
+        private void ValidityCheckEmail(string email)
         {
             if (string.IsNullOrEmpty(email)) throw new Exception("Email is empty or null");
 

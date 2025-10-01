@@ -50,7 +50,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="title">ورودی تایتل نمایشی برای تمایز آدرس ها می باشد</param>
         /// <exception cref="Exception">مقدار نباید نال، خالی، یا شامل نمادها باشد</exception>
-        public void ValidityCheckTitle(string title)
+        private void ValidityCheckTitle(string title)
         {
             if (title == null) throw new Exception("Your title can't be null");
             string titleRegex = "([a-zA-Z0-9 \\s]+)";
@@ -62,7 +62,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="street">آدرس خیابان شامل بخش هایی مانند، نام محله، میدان و... می باشد</param>
         /// <exception cref="Exception">نباید نال، خالی یا شامل نمادهایی بجز کاراکتر های جدا کننده باشد</exception>
-        public void ValidityCheckStreetAddress(string street)
+        private void ValidityCheckStreetAddress(string street)
         {
             if (street == null) throw new Exception("Your title can't be null");
             string streetAddressRegex = "([a-zA-Z0-9,،._\\s]+)";
@@ -74,7 +74,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="postalCode">کد پستی تنها شامل عدد است</param>
         /// <exception cref="Exception">نباید نال، خالی، یا شامل چیزی بجز عدد باشد</exception>
-        public void ValidityPostalCode(string postalCode)
+        private void ValidityPostalCode(string postalCode)
         {
             if (postalCode == null) throw new Exception("Your PostalCode can't be null");
             string postalcodeRegex = @"^\d{10}$";

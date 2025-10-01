@@ -43,7 +43,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="name">نام و یا نام خانوادگی</param>
         /// <exception cref="Exception">نام نمیتواند نال، خالی و یا شامل کاراکتر های مختلف باشد</exception>
-        public void ValidityCheckName(string name)
+        private void ValidityCheckName(string name)
         {
             string nameRegex = "([a-zA-Z0-9 \\s]+)";
             if (!Regex.IsMatch(name, nameRegex)) throw new Exception("You can only use A-Z a-z and space.");
@@ -55,7 +55,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="birthDate">تاریخ تولد</param>
         /// <exception cref="Exception">تاریخ تولد نمی تواند نال، خالی،بیشتر از 150 سال قبل و یا در آینده باشد </exception>
-        public void ValidityCheckBirthDate(DateOnly birthDate)
+        private void ValidityCheckBirthDate(DateOnly birthDate)
         {
             DateOnly max = birthDate.AddYears(-150);
             if (birthDate >= DateOnly.FromDateTime(DateTime.Now) || birthDate <= max) throw new Exception("please enter valid birthDate");

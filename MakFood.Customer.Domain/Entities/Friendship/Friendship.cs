@@ -63,7 +63,7 @@ namespace MakFood.Customer.Domain.Models.Entities.Friendship
         /// </summary>
         /// <param name="nickName"></param>
         /// <exception cref="Exception"></exception>
-        public void ValidityNickName(string nickName)
+        private void ValidityNickName(string nickName)
         {
             if (nickName == null) throw new Exception("nickName can't be null");
             string nameRegex = "([a-zA-Z0-9 \\s]+)";
