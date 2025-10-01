@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Customer.Application.Interfaces
+namespace MakFood.Customer.Domain.Interfaces
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
     }
 }

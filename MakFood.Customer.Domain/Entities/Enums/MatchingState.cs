@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MakFood.Customer.Domain.Models.Entities.Enums
 {
-    internal class MatchingState
+    public enum MatchingState
     {
+        Requested,
+        Rejected,
+        Accepted,
+        Revoke
     }
 }
