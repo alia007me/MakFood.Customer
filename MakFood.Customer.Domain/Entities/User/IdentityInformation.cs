@@ -16,7 +16,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks>
     public class IdentityInformation
     {
-        
+        private IdentityInformation() { }
+
         /// <summary>
         /// این کانستراکتور نام و نام خانوادگی را دریافت کرده و پس از صحت سنجی ثبت می کند
         /// </summary>

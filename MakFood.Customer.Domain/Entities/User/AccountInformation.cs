@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 namespace MakFood.Customer.Domain.Models.Entities.User
 {
+
     /// <summary>
     /// این کلاس اطلاعات اکانت یک فرد را ذخیره می کند
     /// </summary>
     /// <remarks>
     /// این مدل شامل آیدی، جوین دیت، و نشان می باشد
     /// متد برای ثبت بدج، حذف پروفایل و ست یا آپدیت کردن پروفایل هم دارد
-    /// </remarks>
+    /// </remarks
     public class AccountInformation
     {
-        private string? _password;
+
         /// <summary>
         /// کانستراکتور بدون مقدار ورودی برای ثبت مقدایر اولیه
         /// </summary>

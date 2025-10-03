@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MakFood.Customer.Domain.Interfaces\MakFood.Customer.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Domain\MakFood.Customer.Domain.Models.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Infrstructure.DataAccess.Repository\MakFood.Customer.Infrstructure.DataAccess.Repository.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Infrstructure.DI\MakFood.Customer.Infrstructure.DI.csproj" />
+  </ItemGroup>
+
+</Project>
