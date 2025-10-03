@@ -15,15 +15,17 @@ namespace MakFood.Customer.Domain.Models.Entities.Friendship
     /// </summary>
     public class Friendship
     {
-            /// <summary>
-            /// سازنده‌ی کلاس Friendship. 
-            /// وظیفه‌ی آن مقداردهی اولیه مقادیر اصلی و اعتبارسنجی nicknameها است.
-            /// </summary>
-            /// <param name="nickNameOfReceiver">نام مستعار دریافت‌کننده‌ی درخواست</param>
-            /// <param name="nickNameOfSender">نام مستعار ارسال‌کننده‌ی درخواست</param>
-            /// <param name="userId">شناسه‌ی کاربر اصلی</param>
-            /// <param name="otherUserId">شناسه‌ی کاربر مقابل</param>
-            
+
+        private Friendship() { }
+
+        /// <summary>
+        /// سازنده‌ی کلاس Friendship. 
+        /// وظیفه‌ی آن مقداردهی اولیه مقادیر اصلی و اعتبارسنجی nicknameها است.
+        /// </summary>
+        /// <param name="nickNameOfReceiver">نام مستعار دریافت‌کننده‌ی درخواست</param>
+        /// <param name="nickNameOfSender">نام مستعار ارسال‌کننده‌ی درخواست</param>
+        /// <param name="userId">شناسه‌ی کاربر اصلی</param>
+        /// <param name="otherUserId">شناسه‌ی کاربر مقابل</param>
         public Friendship(string nickNameOfReceiver, string nickNameOfSender, Guid userId, Guid otherUserId)
         {
 

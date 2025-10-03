@@ -2,6 +2,7 @@
 using System.Reflection.Metadata;
 using MakFood.Customer.Domain.Models.Entities.Friendship;
 using MakFood.Customer.Domain.Models.Entities.User;
+using MakFood.Customer.Infrstructure.DataAccess.Context.Configuration;
 
 namespace MakFood.Customer.Infrstructure.DataAccess.Context
 {
@@ -15,13 +16,8 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().OwnsOne(j => j.Account, a =>
-            {
-                a.Property(p => p.Id);
-            });
-
-            
-
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FriendShipConfiguration).Assembly);
         }
     }
 }

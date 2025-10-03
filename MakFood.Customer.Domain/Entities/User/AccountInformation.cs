@@ -16,6 +16,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks
     public class AccountInformation
     {
+
         /// <summary>
         /// کانستراکتور بدون مقدار ورودی برای ثبت مقدایر اولیه
         /// </summary>
