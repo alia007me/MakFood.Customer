@@ -29,6 +29,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             this.Account = account;
             this.Contactinfo = contactinfo;
         }
+        
 
         public Guid Id { get;private init; }
         public IdentityInformation Identity { get; set; }

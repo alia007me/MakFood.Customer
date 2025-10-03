@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MakFood.Customer.Domain.Interfaces\MakFood.Customer.Domain.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

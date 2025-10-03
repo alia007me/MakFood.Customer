@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MakFood.Customer.Domain\MakFood.Customer.Domain.Models.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Infrstructure.DataAccess.Repository\MakFood.Customer.Infrstructure.DataAccess.Repository.csproj" />
   </ItemGroup>
 
 </Project>

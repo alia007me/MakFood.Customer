@@ -44,7 +44,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         private void ValidityUserName(string username)
         {
             if (username == null) throw new Exception("Your userName can't be Null");
-            string userNameRegex = "^[A-Za-z][A-Za-z0-9_]{2,19}$\r\n";
+            string userNameRegex = "^[A-Za-z][A-Za-z0-9_]{2,19}$ ";
             if (!Regex.IsMatch(username, userNameRegex)) throw new Exception("Your UserName is not Valid Between 2 - 19 char and A-z and _ is valid");
 
         }
