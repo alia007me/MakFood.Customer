@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
@@ -24,7 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MakFood.Customer.Application\MakFood.Customer.Application.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Domain.Interfaces\MakFood.Customer.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Domain\MakFood.Customer.Domain.Models.csproj" />
     <ProjectReference Include="..\MakFood.Customer.Infrstructure.DataAccess.Context\MakFood.Customer.Infrstructure.DataAccess.Context.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Infrstructure.DataAccess.Repository\MakFood.Customer.Infrstructure.DataAccess.Repository.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Infrstructure.DI\MakFood.Customer.Infrstructure.DI.csproj" />
   </ItemGroup>
 
 </Project>

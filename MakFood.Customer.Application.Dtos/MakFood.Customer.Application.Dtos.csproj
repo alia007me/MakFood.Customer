@@ -10,9 +10,4 @@
     <PackageReference Include="MediatR" Version="13.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MakFood.Customer.Application.Servises\MakFood.Customer.Application.Servises.csproj" />
-    <ProjectReference Include="..\MakFood.Customer.Infrstructure.DataAccess.Context\MakFood.Customer.Infrstructure.DataAccess.Context.csproj" />
-  </ItemGroup>
-
 </Project>

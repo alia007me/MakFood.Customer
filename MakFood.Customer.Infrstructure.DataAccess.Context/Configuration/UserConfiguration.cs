@@ -12,18 +12,22 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Configuration
             {
                 a.Property(p => p.Id);
             });
+
             builder.OwnsOne(j => j.Contactinfo, p =>
             {
                 p.Property(pi => pi.Id);
             });
+
             builder.OwnsOne(j => j.Identity, p =>
             {
                 p.Property(pi => pi.Id);
             });
+
             builder.OwnsMany(j => j.Addresses, p =>
             {
                 p.Property(pi => pi.Id);
             });
+
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Customer.Infrstructure.DataAccess.Repository
+namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositories
 {
-    internal class UserRepository
+    internal class FriendshipRepository
     {
     }
 }

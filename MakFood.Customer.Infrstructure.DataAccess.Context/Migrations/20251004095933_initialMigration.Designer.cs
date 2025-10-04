@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakFood.Customer.Infrstructure.DataAccess.Context.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251003161718_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20251004095933_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

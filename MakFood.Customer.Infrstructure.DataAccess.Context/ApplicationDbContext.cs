@@ -14,6 +14,8 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
 
         public DbSet<User> Users { get; set; }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
