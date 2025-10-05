@@ -29,6 +29,7 @@ namespace MakFood.Customer.Application.CommandHandler.CreateUser
 
             var user = new User(identityInfo,accountInfo,contactInfo);
             _context.Add<User>(user);
+
             await _context.SaveChangesAsync();
 
             return user.Id;
