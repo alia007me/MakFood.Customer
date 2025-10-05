@@ -1,4 +1,5 @@
 ﻿using MakFood.Customer.Application.Servises;
+using MakFood.Customer.Domain.Interfaces;
 using MakFood.Customer.Domain.Models.Entities.User;
 using MakFood.Customer.Infrstructure.DataAccess.Context;
 using MediatR;
@@ -10,17 +11,17 @@ namespace MakFood.Customer.Application.CommandHandler.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand,Guid>
     {
         private readonly ApplicationDbContext _context;
-        private readonly IUserServiceRepository _userService;
+        private readonly IUserRepository _userRepository;
 
-        public CreateUserCommandHandler(ApplicationDbContext context, IUserServiceRepository userService)
+        public CreateUserCommandHandler(ApplicationDbContext context, IUserRepository userRepository)
         {
             _context = context;
-            _userService = userService;
+            _userRepository = userRepository;
         }
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            await _userService.RegisterUser(request.PhoneNumber);  
+            await RegisterUser(request.PhoneNumber);  
 
             var accountInfo = new AccountInformation();
             var contactInfo = new ContactInformation(request.PhoneNumber);
@@ -31,6 +32,14 @@ namespace MakFood.Customer.Application.CommandHandler.CreateUser
             await _context.SaveChangesAsync();
 
             return user.Id;
+        }
+
+
+        private async Task RegisterUser(string phoneNumber)
+        {
+            var result = await _userRepository.IsUserExistByPhoneNumber(phoneNumber);
+            if (result) throw new Exception("this phoneNumber Is already registerd");
+
         }
     }
 }

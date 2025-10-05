@@ -7,20 +7,16 @@ using Microsoft.EntityFrameworkCore.Storage.Json;
 
 namespace MakFood.Customer.Application.Servises
 {
-    public class UserServiceRepository : IUserServiceRepository
+    public class UserService : IUserService
     {
         private IUserRepository _userRepository;
 
-        public UserServiceRepository(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task RegisterUser(string phoneNumber)
-        {
-            var result = await _userRepository.IsUserExistByPhoneNumber(phoneNumber);
-            if (result) throw new Exception("this phoneNumber Is already registerd");
-        }
+        
 
         
     }

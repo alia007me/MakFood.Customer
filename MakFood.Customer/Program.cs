@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 //builder.Services.AddScoped<IFriendshipRepository,FriendshipRepository>();
-builder.Services.AddScoped<IUserServiceRepository, UserServiceRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
