@@ -41,9 +41,6 @@ namespace MakFood.Customer.Domain.Interfaces
         /// </summary>
         Task<User?> GetByPhoneNumberAsync(string phoneNumber);
 
-        /// <summary>
-        /// ذخیره تمام تغییرات در دیتابیس 
-        /// </summary>
-        Task SaveChangesAsync();
+     
     }
 }

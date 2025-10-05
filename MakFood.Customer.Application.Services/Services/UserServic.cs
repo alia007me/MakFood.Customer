@@ -10,10 +10,11 @@ namespace MakFood.Customer.Application.Service.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-
-        public UserService(IUserRepository userRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public UserService(IUserRepository userRepository , IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -26,8 +27,8 @@ namespace MakFood.Customer.Application.Service.Services
 
             user.Account.UpdateReplaceProfilePicture(profilePictureUrl);
 
-            _userRepository.Update(user);
-            await _userRepository.SaveChangesAsync();
+
+            await _unitOfWork.SaveChangesAsync();
         }
 
         /// <summary>
@@ -44,8 +45,8 @@ namespace MakFood.Customer.Application.Service.Services
 
             user.Account.RemoveprofilePicture();
 
-            _userRepository.Update(user);
-            await _userRepository.SaveChangesAsync();
+
+            await _unitOfWork.SaveChangesAsync();
         }
 
         
