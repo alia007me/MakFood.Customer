@@ -17,7 +17,6 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FriendShipConfiguration).Assembly);
         }
     }
 }
