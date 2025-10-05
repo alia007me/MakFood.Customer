@@ -10,13 +10,13 @@ namespace MakFood.Customer.Application.CommandHandler.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand,Guid>
     {
-        private readonly ApplicationDbContext _context;
         private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateUserCommandHandler(ApplicationDbContext context, IUserRepository userRepository)
+        public CreateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
-            _context = context;
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -28,9 +28,9 @@ namespace MakFood.Customer.Application.CommandHandler.CreateUser
             var identityInfo = new IdentityInformation(request.FirstName, request.LastName);
 
             var user = new User(identityInfo,accountInfo,contactInfo);
-            _context.Add<User>(user);
+            await _unitOfWork.Users.AddUser(user);
 
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChange(cancellationToken);
 
             return user.Id;
         }

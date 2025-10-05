@@ -3,7 +3,7 @@ using MakFood.Customer.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositories;
 using MakFood.Customer.Application.CommandHandler.CreateUser;
-using MakFood.Customer.Application.Servises;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 //builder.Services.AddScoped<IFriendshipRepository,FriendshipRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork >();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
