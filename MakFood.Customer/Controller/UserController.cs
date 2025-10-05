@@ -4,13 +4,14 @@ using MakFood.Customer.Domain.Models.Entities.User;
 using MakFood.Customer.Application.CommandHandler.CreateUser;
 using System.Threading.Tasks;
 using MediatR;
+using MakFood.Customer.Application.CommandHandler.AddAddres;
 
 namespace MakFood.Customer.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
 
-    public class UserController: ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
         private readonly ISender _sender;
@@ -25,6 +26,14 @@ namespace MakFood.Customer.Controller
         {
             var userid = await _sender.Send(command);
             return Ok(userid);
+        }
+
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> AddAddress(AddAddresCommand command)
+        {
+            var addresId = await _sender.Send(command);
+            return Ok(addresId);
         }
 
 

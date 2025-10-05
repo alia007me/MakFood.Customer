@@ -15,6 +15,11 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositorie
             _context = context;
         }
 
+        public void UpdateUser(User user)
+        {
+            _context.Users.Update(user);
+        }
+
         public async Task AddUser(User user)
         {
             await _context.Users.AddAsync(user);
@@ -27,6 +32,8 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositorie
             if (target == null) throw new Exception("The member you are looking for probebly dosent exist.");
             return target;
         }
+
+
 
         public async Task<User> GetUserByPhoneNumber(string phoneNumber)
         {
