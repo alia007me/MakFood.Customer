@@ -1,4 +1,4 @@
-﻿using MakFood.Customer.Application.Servises;
+﻿
 using MakFood.Customer.Domain.Interfaces;
 using MakFood.Customer.Domain.Models.Entities.User;
 using MakFood.Customer.Infrstructure.DataAccess.Context;
