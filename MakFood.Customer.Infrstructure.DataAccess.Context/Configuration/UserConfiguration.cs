@@ -8,18 +8,9 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Configuration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.OwnsOne(j => j.Account, a =>
-            {
-                a.Property(p => p.Id);
-            });
-            builder.OwnsOne(j => j.Contactinfo, p =>
-            {
-                p.Property(pi => pi.Id);
-            });
-            builder.OwnsOne(j => j.Identity, p =>
-            {
-                p.Property(pi => pi.Id);
-            });
+            builder.OwnsOne(j => j.Account);
+            builder.OwnsOne(j => j.Contactinfo);
+            builder.OwnsOne(j => j.Identity);
             builder.OwnsMany(j => j.Addresses, p =>
             {
                 p.Property(pi => pi.Id);
