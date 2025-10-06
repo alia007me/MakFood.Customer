@@ -14,6 +14,7 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Friendship> Friendships { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
