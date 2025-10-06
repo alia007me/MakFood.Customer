@@ -29,8 +29,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             this.PhoneNumber = phoneNumber;
         }
         public Guid Id { get; private init; }
-        public string PhoneNumber { get; private set; }
-        public string? Email { get; private set; }
+        public string PhoneNumber { get;  set; }
+        public string? Email { get;  set; }
 
         /// <summary>
         /// این متد شماره تلفن را صحت سنجی می کند
