@@ -13,7 +13,7 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
         }
 
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Address> Address { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

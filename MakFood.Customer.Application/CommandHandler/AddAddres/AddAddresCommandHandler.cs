@@ -28,7 +28,7 @@ namespace MakFood.Customer.Application.CommandHandler.AddAddres
 
             Address Adres = new Address(Command.Title, Command.StreetAddres, Command.HouseNumber);
 
-            if (target.Addresses.Contains<Address>(Adres)) throw new Exception("this Addres already exist");
+            if (target._address.Contains<Address>(Adres)) throw new Exception("this Addres already exist");
             
             target.AddAddres(Adres);
 

@@ -14,7 +14,7 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Configuration
 
             builder.OwnsOne(j => j.Identity);
 
-            builder.OwnsMany(j => j.Addresses, p =>
+            builder.OwnsMany(j => j._address, p =>
             {
                 p.Property(pi => pi.Id);
             });

@@ -3,9 +3,11 @@ using MakFood.Customer.Domain.Models.Entities.User;
 using MakFood.Customer.Infrstructure.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositories
 {
+
 
     public class UserRepository : IUserRepository
     {
@@ -50,8 +52,34 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositorie
 
         }
 
-        
+      
 
+        public async Task RemoveAddres(Guid UserId, Address address)
+        {
+            var target = await GetUserById(UserId);
+            target.DeleteAddres(address);
 
+        }
+
+        public async Task AddAddress(Guid UserId, Address address)
+        {
+            var target = await GetUserById(UserId);
+            target.DeleteAddres(address);
+        }
+
+        public async Task<User> GetUserwithAllAddressByUserId(Guid UserId)
+        {
+            return await _context.Users.Include(P => P._address).SingleOrDefaultAsync(x=>x.Id == UserId);
+        }
+
+        public async void UpdateAddres(Guid user, Address address)
+        {
+            var target = await GetUserwithAllAddressByUserId(user);
+            var addresslist = target._address;
+
+            var Forchange = addresslist.SingleOrDefault(j => j.Id == address.Id);
+
+            Forchange = address;
+        }
     }
-}
+} 

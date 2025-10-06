@@ -14,7 +14,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks>
     public class User
     {
-        private List<Address>? _address=new List<Address>();
+        //private List<Address>? _address=new List<Address>();
         private User() 
         {
         }
@@ -37,7 +37,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public IdentityInformation Identity { get; set; }
         public AccountInformation Account { get; set; }
         public ContactInformation Contactinfo { get; set; }
-        public IReadOnlyList<Address>? Addresses { get => _address.AsReadOnly(); }
+        public virtual ICollection<Address> _address { get; private set; } = new List<Address>();
+
 
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="address"></param>
         public void AddAddres(Address address)
         {
-            if (Addresses == null) throw new Exception("Address can't be Null");
+            if (address == null) throw new Exception("Address can't be Null");
 
             _address.Add(address);
         }
@@ -58,7 +59,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <exception cref="Exception"></exception>
         public void DeleteAddres(Address address)
         {
-            if (Addresses == null) throw new Exception("Address can't be Null");
+            if (address == null) throw new Exception("Address can't be Null");
 
             _address.Remove(address);
         }

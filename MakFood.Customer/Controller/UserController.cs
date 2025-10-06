@@ -5,6 +5,7 @@ using MakFood.Customer.Application.CommandHandler.CreateUser;
 using System.Threading.Tasks;
 using MediatR;
 using MakFood.Customer.Application.CommandHandler.AddAddres;
+using MakFood.Customer.Application.CommandHandler.UpdateUserInfo;
 
 namespace MakFood.Customer.Controller
 {
@@ -36,6 +37,11 @@ namespace MakFood.Customer.Controller
             return Ok(addresId);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateUserInfoCommand command)
+        {
+            return Ok(await _sender.Send(command));
+        }
 
     }
 }
