@@ -1,32 +1,45 @@
+using MakFood.Customer.Infrstructure.DataAccess.Context;
+using MakFood.Customer.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositories;
+using MakFood.Customer.Application.CommandHandler.CreateUser;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddControllers();
+builder.Services.AddScoped<IUserRepository,UserRepository>();
+//builder.Services.AddScoped<IFriendshipRepository,FriendshipRepository>();
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork >();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddMediatR(configuration =>
+{
+    configuration.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
+});
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
-var summaries = new[]
+if (app.Environment.IsDevelopment())
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

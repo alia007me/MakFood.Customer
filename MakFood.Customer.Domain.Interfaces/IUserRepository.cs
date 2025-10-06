@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MakFood.Customer.Domain.Models.Entities.User;
 
 namespace MakFood.Customer.Domain.Interfaces
 {
     public interface IUserRepository
     {
+        Task AddUser(User user);
+        Task<User> GetUserById(Guid id);  
+        Task<User> GetUserByPhoneNumber(string phoneNumber);
+        Task<bool> IsUserExistByPhoneNumber(string phoneNumber);
+        
     }
 }

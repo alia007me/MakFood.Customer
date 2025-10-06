@@ -16,6 +16,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks>
     public class Address
     {
+        private Address() { }
         /// <summary>
         /// این کانستراکتور مقادیر حیاتی و مهم مربوط به کلاس را دریافت می کند
         /// </summary>

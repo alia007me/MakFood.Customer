@@ -16,6 +16,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks>
     public class ContactInformation
     {
+        private ContactInformation() { }
         /// <summary>
         /// این کانستراکتور فقط شماره تلفن را به عنوان مورد ضروری از کاربر دریافت می کند
         /// </summary>

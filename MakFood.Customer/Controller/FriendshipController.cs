@@ -1,6 +1,14 @@
-﻿namespace MakFood.Customer.Controller
+﻿using MakFood.Customer.Infrstructure.DataAccess.Repository;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MakFood.Customer.Controller
 {
-    public class FriendshipController
+    [ApiController]
+    [Route("api/[controller]")]
+
+    public class FriendshipController : ControllerBase
     {
+       
+
     }
 }

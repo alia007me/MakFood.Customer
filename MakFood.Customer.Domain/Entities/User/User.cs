@@ -14,7 +14,10 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks>
     public class User
     {
-        private List<Address> _address;
+        private List<Address>? _address=new List<Address>();
+        private User() 
+        {
+        }
 
         /// <summary>
         /// کانستراکتور اطلاعات مربوط به کاربر

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Customer.Infrstructure.DI
+namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositories
 {
-    internal class DependencyInjection
+    internal class FriendshipRepository
     {
     }
 }
