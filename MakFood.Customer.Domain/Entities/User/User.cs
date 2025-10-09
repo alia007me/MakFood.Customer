@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MakFood.Customer.Domain.Models.Entities.User
 {
+
     /// <summary>
     /// این کلاس تمام اطلاعات کاربر را در خود قرار می دهد
     /// </summary>
@@ -14,8 +15,8 @@ namespace MakFood.Customer.Domain.Models.Entities.User
     /// </remarks>
     public class User
     {
-        //private List<Address>? _address=new List<Address>();
-        private User() 
+        private List<Address> _address = new List<Address>();
+        private User()
         {
         }
 
@@ -33,12 +34,11 @@ namespace MakFood.Customer.Domain.Models.Entities.User
             this.Contactinfo = contactinfo;
         }
 
-        public Guid Id { get;private init; }
+        public Guid Id { get; private init; }
         public IdentityInformation Identity { get; set; }
         public AccountInformation Account { get; set; }
         public ContactInformation Contactinfo { get; set; }
-        public virtual ICollection<Address> _address { get; private set; } = new List<Address>();
-
+        public IReadOnlyList<Address> Addresses=> _address.AsReadOnly();
 
 
         /// <summary>

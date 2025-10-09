@@ -36,18 +36,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         public string? ProfilePicture { get;private set; }
         public Badge Badge { get; private set; }
 
-        /// <summary>
-        /// یوزر نیم رو برسی می کنه
-        /// </summary>
-        /// <param name="username"></param>
-        /// <exception cref="Exception"></exception>
-        private void ValidityUserName(string username)
-        {
-            if (username == null) throw new Exception("Your userName can't be Null");
-            string userNameRegex = "^[A-Za-z][A-Za-z0-9_]{2,19}$\r\n";
-            if (!Regex.IsMatch(username, userNameRegex)) throw new Exception("Your UserName is not Valid Between 2 - 19 char and A-z and _ is valid");
-
-        }
+      
 
         /// <summary>
         /// این متد عکس پروفایل جدید برای کاربر ثبت می کند

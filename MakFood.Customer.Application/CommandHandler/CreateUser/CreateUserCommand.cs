@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace MakFood.Customer.Application.CommandHandler.CreateUser
 {
     public record CreateUserCommand(
-        string UserName, string Password, string RePassword,
+        string UserName, string Password, string ConfirmPassword,
         string FirstName, string LastName, string PhoneNumber
-        ) : IRequest<Guid>;
+        ) : IRequest<CreateUserCommandResponse>;
 
 }

@@ -4,6 +4,7 @@ using MakFood.Customer.Infrstructure.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MakFood.Customer.Infrstructure.DataAccess.Context.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251008192755_ChangeHouseNumber")]
+    partial class ChangeHouseNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,39 +59,6 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Migrations
                     b.ToTable("Friendship");
                 });
 
-            modelBuilder.Entity("MakFood.Customer.Domain.Models.Entities.User.Address", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<long?>("HouseNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddres")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("UnitNo")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Address");
-                });
-
             modelBuilder.Entity("MakFood.Customer.Domain.Models.Entities.User.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -98,14 +68,6 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("MakFood.Customer.Domain.Models.Entities.User.Address", b =>
-                {
-                    b.HasOne("MakFood.Customer.Domain.Models.Entities.User.User", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MakFood.Customer.Domain.Models.Entities.User.User", b =>
@@ -130,6 +92,40 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Migrations
                             b1.HasKey("UserId");
 
                             b1.ToTable("Users");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.OwnsMany("MakFood.Customer.Domain.Models.Entities.User.Address", "Addresses", b1 =>
+                        {
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<long?>("HouseNumber")
+                                .HasColumnType("bigint");
+
+                            b1.Property<string>("PostalCode")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("StreetAddres")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Title")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<long?>("UnitNo")
+                                .HasColumnType("bigint");
+
+                            b1.HasKey("UserId", "Id");
+
+                            b1.ToTable("Address");
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
@@ -188,16 +184,13 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Migrations
                     b.Navigation("Account")
                         .IsRequired();
 
+                    b.Navigation("Addresses");
+
                     b.Navigation("Contactinfo")
                         .IsRequired();
 
                     b.Navigation("Identity")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("MakFood.Customer.Domain.Models.Entities.User.User", b =>
-                {
-                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }

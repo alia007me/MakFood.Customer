@@ -66,6 +66,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="email">ایمیل</param>
         public void SetUpdateEmail(string email)
         {
+
             ValidityCheckEmail(email);
             Email = email;
         }

@@ -25,13 +25,11 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositorie
         public async Task AddUser(User user)
         {
             await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserById(Guid id)
+        public async Task<User?> GetUserById(Guid id)
         {
             var target = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            if (target == null) throw new Exception("The member you are looking for probebly dosent exist.");
             return target;
         }
 
@@ -69,13 +67,13 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Repository.DomainRepositorie
 
         public async Task<User> GetUserwithAllAddressByUserId(Guid UserId)
         {
-            return await _context.Users.Include(P => P._address).SingleOrDefaultAsync(x=>x.Id == UserId);
+            return await _context.Users.Include(P => P.Addresses).SingleOrDefaultAsync(x=>x.Id == UserId);
         }
 
         public async void UpdateAddres(Guid user, Address address)
         {
             var target = await GetUserwithAllAddressByUserId(user);
-            var addresslist = target._address;
+            var addresslist = target.Addresses;
 
             var Forchange = addresslist.SingleOrDefault(j => j.Id == address.Id);
 

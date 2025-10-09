@@ -25,7 +25,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="houseNumber">شماره پلاک</param>
         /// <param name="unitNo">شماره واحد</param>
         /// <param name="postalCode">کد پستی</param>
-        public Address(string title, string streetAddres, uint houseNumber)
+        public Address(string title, string streetAddres)
         {
             Id = Guid.NewGuid();
 
@@ -34,15 +34,15 @@ namespace MakFood.Customer.Domain.Models.Entities.User
 
             this.Title = title;
             this.StreetAddres = streetAddres;
-            this.HouseNumber = houseNumber;
-            
+
+
         }
 
         public Guid Id { get; private init; }
         public string Title { get; private set; }
         public string StreetAddres { get; private set; }
-        public uint HouseNumber { get;private set; }
-        public uint? UnitNo { get;private set; }
+        public uint? HouseNumber { get; private set; }
+        public uint? UnitNo { get; private set; }
         public string? PostalCode { get; private set; }
 
 
@@ -88,7 +88,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="title">نام نمایشی آدرس</param>
         public void UpdateTitle(string title)
         {
-            ValidityCheckTitle(title);
+            if (string.IsNullOrEmpty(title)) { title = Title; }
             Title = title;
         }
 
@@ -98,7 +98,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="streetAddres">آدرس خیابان</param>
         public void UpdateStreetAddres(string streetAddres)
         {
-            ValidityCheckStreetAddress(streetAddres);
+            if (string.IsNullOrEmpty(streetAddres)) { streetAddres = StreetAddres; }
             StreetAddres = streetAddres;
         }
 
@@ -106,8 +106,9 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// شماره خانه (پلاک) را آپدیت می کند
         /// </summary>
         /// <param name="houseNumber">پلاک</param>
-        public void UpdateHouseNumber(uint houseNumber)
-        { 
+        public void UpdateHouseNumber(uint? houseNumber)
+        {
+            if (houseNumber == null) HouseNumber = HouseNumber;
             HouseNumber = houseNumber;
         }
 
@@ -117,7 +118,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="postalCode">آپدیت کد پستی</param>
         public void UpdatePostalCode(string postalCode)
         {
-            ValidityPostalCode(postalCode);
+            if (string.IsNullOrEmpty(postalCode)) { postalCode = PostalCode; }
             PostalCode = postalCode;
         }
 
@@ -126,28 +127,12 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="unitNo">شماره واحد</param>
         /// <exception cref="Exception">نمیتواند نال باشد</exception>
-        public void UpdateUnitNo(string unitNo)
+        public void UpdateUnitNo(uint? unitNo)
         {
-            if (unitNo == null) throw new Exception("input of update Unit cant be null");
-            if (!uint.TryParse(unitNo, out uint value)) throw new Exception("please Enter Natural Number");
-
-            UnitNo = uint.Parse(unitNo); 
+            if (UnitNo == 0) { unitNo = UnitNo; }
+            UnitNo = unitNo;
         }
 
-        /// <summary>
-        /// کد پستی را حذف می کند
-        /// </summary>
-        public void DeletePostalCode()
-        {
-            PostalCode = null;
-        }
-        
-        /// <summary>
-        /// شماره واحد را حذف می کند
-        /// </summary>
-        public void DeleteUnitNo()
-        {
-            UnitNo = null;
-        }
+
     }
 }

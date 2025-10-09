@@ -14,10 +14,12 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context.Configuration
 
             builder.OwnsOne(j => j.Identity);
 
-            builder.OwnsMany(j => j._address, p =>
-            {
-                p.Property(pi => pi.Id);
-            });
+            builder.HasMany(j => j.Addresses)
+                   .WithOne()
+                   .OnDelete(DeleteBehavior.Cascade);
+            //builder.Property(c => c.Addresses)
+            //       .HasField("_address")
+            //       .UsePropertyAccessMode(PropertyAccessMode.PreferFieldDuringConstruction);
 
         }
     }

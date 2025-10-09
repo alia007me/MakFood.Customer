@@ -13,8 +13,13 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Address> Address { get; set; }
+        public DbSet<Friendship> Friendship { get; set; }
 
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableDetailedErrors();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

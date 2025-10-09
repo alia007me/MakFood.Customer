@@ -4,8 +4,7 @@ using MakFood.Customer.Domain.Models.Entities.User;
 using MakFood.Customer.Application.CommandHandler.CreateUser;
 using System.Threading.Tasks;
 using MediatR;
-using MakFood.Customer.Application.CommandHandler.AddAddres;
-using MakFood.Customer.Application.CommandHandler.UpdateUserInfo;
+using MakFood.Customer.Application.CommandHandler.UpdateUser;
 
 namespace MakFood.Customer.Controller
 {
@@ -15,32 +14,24 @@ namespace MakFood.Customer.Controller
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly ISender _sender;
-        public UserController(IUserRepository userRepository, ISender sender)
+        private readonly IMediator _sender;
+        public UserController(IUserRepository userRepository, IMediator sender)
         {
             _userRepository = userRepository;
             _sender = sender;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(CreateUserCommand command)
+        public async Task<IActionResult> CreateUser(CreateUserCommand command, CancellationToken ct)
         {
-            var userid = await _sender.Send(command);
+            var userid = await _sender.Send(command, ct);
             return Ok(userid);
         }
 
-
-        [HttpPost("{id}")]
-        public async Task<IActionResult> AddAddress(AddAddresCommand command)
-        {
-            var addresId = await _sender.Send(command);
-            return Ok(addresId);
-        }
-
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateUserInfoCommand command)
+        public async Task<IActionResult> Update(UpdateUserCommand command, CancellationToken ct)
         {
-            return Ok(await _sender.Send(command));
+            return Ok(await _sender.Send(command, ct));
         }
 
     }

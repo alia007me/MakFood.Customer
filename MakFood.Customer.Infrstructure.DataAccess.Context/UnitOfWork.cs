@@ -13,11 +13,10 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        public IUserRepository Users { get; }
-        public UnitOfWork(ApplicationDbContext context, IUserRepository users)
+        
+        public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            Users = users;
         }
 
         public async Task<int> SaveChange(CancellationToken cancellationToken)

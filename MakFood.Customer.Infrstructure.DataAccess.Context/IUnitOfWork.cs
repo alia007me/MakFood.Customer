@@ -9,7 +9,6 @@ namespace MakFood.Customer.Infrstructure.DataAccess.Context
 {
     public interface IUnitOfWork
     {
-        IUserRepository Users {  get; }
         public Task<int> SaveChange(CancellationToken ct);
     }
 }

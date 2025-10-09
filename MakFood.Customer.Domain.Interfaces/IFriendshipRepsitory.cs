@@ -8,5 +8,6 @@ namespace MakFood.Customer.Domain.Interfaces
 {
     public interface IFriendshipRepsitory
     {
+
     }
 }

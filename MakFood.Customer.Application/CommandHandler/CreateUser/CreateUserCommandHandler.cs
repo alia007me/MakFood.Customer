@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace MakFood.Customer.Application.CommandHandler.CreateUser
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand,Guid>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand,CreateUserCommandResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -19,24 +19,30 @@ namespace MakFood.Customer.Application.CommandHandler.CreateUser
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<CreateUserCommandResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            await RegisterUser(request.PhoneNumber);  
+            CreateUserCommandResponse response = new CreateUserCommandResponse(); ;
+
+            await IsMemberAlreadyExist(request.PhoneNumber);  
 
             var accountInfo = new AccountInformation();
             var contactInfo = new ContactInformation(request.PhoneNumber);
             var identityInfo = new IdentityInformation(request.FirstName, request.LastName);
 
             var user = new User(identityInfo,accountInfo,contactInfo);
-            await _unitOfWork.Users.AddUser(user);
+            await _userRepository.AddUser(user);
 
             await _unitOfWork.SaveChange(cancellationToken);
 
-            return user.Id;
+
+            //این پیغام خروجی رو مینویسه
+            response.Massage = "User successfully created";
+
+            return response;
         }
 
 
-        private async Task RegisterUser(string phoneNumber)
+        private async Task IsMemberAlreadyExist(string phoneNumber)
         {
             var result = await _userRepository.IsUserExistByPhoneNumber(phoneNumber);
             if (result) throw new Exception("this phoneNumber Is already registerd");

@@ -81,8 +81,10 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// </summary>
         /// <param name="firstName"></param>
         public void UpdateFirstName(string firstName)
+        
         {
-            ValidityCheckName(firstName);
+            if (string.IsNullOrEmpty(firstName)) { firstName = FirstName; }
+
             FirstName = firstName;
         }
 
@@ -92,7 +94,7 @@ namespace MakFood.Customer.Domain.Models.Entities.User
         /// <param name="lastName"></param>
         public void UpdateLastName(string lastName)
         {
-            ValidityCheckName(lastName);
+            if (string.IsNullOrEmpty(lastName)) { lastName = LastName; }   
             LastName = lastName;
         }
 
