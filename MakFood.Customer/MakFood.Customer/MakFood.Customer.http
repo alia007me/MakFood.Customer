@@ -1,0 +1,6 @@
+@MakFood.Customer_HostAddress = http://localhost:5269
+
+GET {{MakFood.Customer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
