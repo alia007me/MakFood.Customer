@@ -1,5 +1,6 @@
 ﻿using MakFood.Customer.Domain.Base;
 using MakFood.Customer.Infrastructure.Substructure.Exceptions;
+using System.Data;
 
 namespace MakFood.Customer.Domain.UserAggregate
 {
@@ -57,12 +58,12 @@ namespace MakFood.Customer.Domain.UserAggregate
             _addresses.Add(address);
         }
 
-        public bool RemoveAddress(string addressTitle)
+        public bool RemoveAddress(Address address)
         {
-            var address = _addresses.SingleOrDefault(a => a.Title == addressTitle);
-
             return _addresses.Remove(address);
         }
+
+
 
         #endregion
     }

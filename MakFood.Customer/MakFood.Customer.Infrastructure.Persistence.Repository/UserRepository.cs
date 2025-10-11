@@ -23,5 +23,7 @@ namespace MakFood.Customer.Infrastructure.Persistence.Repository
         {
             return await _context.Users.SingleOrDefaultAsync(c => c.Id == userId, ct);
         }
+
+
     }
 }
