@@ -1,5 +1,6 @@
 ﻿using MakFood.Customer.Domain.UserAggregate;
 using MakFood.Customer.Domain.UserAggregate.Contracts;
+using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
 using MediatR;
 
 namespace MakFood.Customer.Application.Commands.UpdateUser
@@ -7,9 +8,11 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UpdateUserCommandResponse>
     {
         private readonly IUserRepository _userRepository;
-        public UpdateUserCommandHandler(IUserRepository userRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public UpdateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<UpdateUserCommandResponse> Handle(UpdateUserCommand command, CancellationToken ct)
         {
@@ -32,6 +35,7 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
                     break;
 
             }
+            await _unitOfWork.Commit(ct);
 
             return response;
         }
@@ -47,7 +51,7 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
         private string updateAddress(UserAccount user, UpdateUserCommand command)
         {
             var address = user.Addresses.FirstOrDefault(a => a.Id == command.AddressId);
-            AddressNullcheck(address);
+            //AddressNullcheck(address);
 
             command = FillBlanksOfCommand(address, command);
 
@@ -60,7 +64,7 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
         private string RemoveAddress(UserAccount user, UpdateUserCommand command)
         {
             var forRemoveAddress = user.Addresses.FirstOrDefault(a => a.Id == command.AddressId);
-            AddressNullcheck(forRemoveAddress);
+            //AddressNullcheck(forRemoveAddress);
             user.RemoveAddress(forRemoveAddress);
 
             return "Address successfully removed";
@@ -80,8 +84,6 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
         {
             if (!command.AddressId.HasValue)
                 return 1; // Add Address
-            else if (command.AddressId.HasValue)
-                return 2; // Update Address
             else if (command.AddressId.HasValue &&
                      string.IsNullOrWhiteSpace(command.AddressTitle) &&
                      string.IsNullOrWhiteSpace(command.AddressStreet) &&
@@ -89,6 +91,8 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
                      string.IsNullOrWhiteSpace(command.AddressPostalCode) &&
                      !command.AddressUnitNo.HasValue)
                 return 3; // Remove Address
+            else if (command.AddressId.HasValue)
+                return 2; // Update Address
             else
                 return 0; // No Operation
         }
@@ -122,15 +126,15 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
             }
         }
 
-        private Address AddressNullcheck(Address address)
-        {
-            if (address == null)
-            {
-                throw new Exception("Address Not Found!");
-            }
-            return address;
+        //private Address AddressNullcheck(Address address)
+        //{
+        //    if (address == null)
+        //    {
+        //        throw new Exception("Address Not Found!");
+        //    }
+        //    return address;
 
-        }
+        //}
         #endregion
     }
 }

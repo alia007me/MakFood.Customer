@@ -10,10 +10,14 @@
         /// <returns>اطلاعات کاربر</returns>
         public Task<UserAccount?> GetUserById(Guid userId, CancellationToken ct);
 
+        public Task<UserAccount?> GetUserByPhoneNumber(string phoneNumber, CancellationToken ct);
+
         /// <summary>
         /// اضافه کردن یک کاربر
         /// </summary>
         /// <param name="user">اطلاعات کاربر</param>
         public void AddUser(UserAccount user);
+
+        
     }
 }

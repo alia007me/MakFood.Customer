@@ -6,7 +6,7 @@ namespace MakFood.Customer.Application.Commands.UpdateUser
     {
         public static Address ToModel(this UpdateUserCommand command)
         {
-            return new Address(command.AddressTitle, command.AddressStreet!, (uint)command.AddressPlaque, command.AddressPostalCode!,command.AddressUnitNo) { };
+            return new Address(command.AddressTitle, command.AddressStreet!, (uint)command.AddressPlaque, command.AddressPostalCode,command.AddressUnitNo) { };
         }
     }
 }

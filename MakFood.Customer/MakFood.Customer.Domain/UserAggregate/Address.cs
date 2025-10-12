@@ -33,6 +33,7 @@ namespace MakFood.Customer.Domain.UserAggregate
             CheckPlaqueRegexNullOrEmpty(plaque);
             CheckPostalCodeRegexNullOrEmpty(postalCode);
 
+            Id = Guid.NewGuid();
             Title = title;
             Street = street;
             Plaque = plaque;
@@ -77,7 +78,7 @@ namespace MakFood.Customer.Domain.UserAggregate
         #region RegexValidations
         private void CheckTitleRegex(string title)
         {
-            if (!Regex.IsMatch(title, "^[a-zA-Z0-9,،.\\s]{3,50}$"))
+            if (!Regex.IsMatch(title, "^[a-zA-Z0-9,،.'\\s]{3,50}$"))
                 throw new ValidationFailedDomainException("Address title format is not valid!");
         }
 
@@ -133,7 +134,7 @@ namespace MakFood.Customer.Domain.UserAggregate
             Title = address.Title;
             Street = address.Street;
             Plaque = address.Plaque;
-            PostalCode =address.PostalCode;
+            PostalCode = address.PostalCode;
             UnitNo = address.UnitNo;
 
         }

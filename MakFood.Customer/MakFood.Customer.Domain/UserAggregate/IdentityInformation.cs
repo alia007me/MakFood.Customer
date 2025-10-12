@@ -47,18 +47,26 @@ namespace MakFood.Customer.Domain.UserAggregate
                 throw new ValidationFailedDomainException("Last name can not be empty!");
         }
 
+        public bool IsNullForUpdate(string vorudi)
+        {
+            if (vorudi == null) return true;
+            return false;
+        }
+
         #endregion
 
         #region Behaviors
 
         public void UpdateName(string firstName, string lastName)
         {
-            CheckFirstNameNullOrEmpty(firstName);
-            CheckLastNameNullOrEmpty(lastName);
+            if(IsNullForUpdate(firstName)) firstName = FirstName;
+            if(IsNullForUpdate(lastName)) lastName = LastName;
 
             FirstName = firstName;
             LastName = lastName;
         }
+
+        
 
         #endregion
     }
