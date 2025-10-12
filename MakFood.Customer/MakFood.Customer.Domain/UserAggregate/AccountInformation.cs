@@ -41,6 +41,20 @@ namespace MakFood.Customer.Domain.UserAggregate
                 throw new ValidationFailedDomainException("Upgrade is not available!");
             }
         }
+
+        public void SetOrUpdateProfileThumbnail(string thumbnailPath)
+        {
+            if (string.IsNullOrWhiteSpace(thumbnailPath))
+                throw new ValidationFailedDomainException("Profile thumbnail cannot be empty!");
+
+            ProfileThumbnail = thumbnailPath;
+        }
+
+        public void RemoveProfileThumbnail()
+        {
+            ProfileThumbnail = null;
+        }
+
         #endregion
     }
 }
