@@ -1,6 +1,43 @@
-﻿namespace MakFood.Customer.Middelware
+﻿using MakFood.Customer.Infrastructure.Substructure.Exceptions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using System.Net;
+
+namespace MakFood.Customer.Middelware
 {
-    public class ExeptionHandlerMiddelware
+    public class ExceptionHandlerMiddelware 
     {
+        private readonly RequestDelegate _next;
+
+        public ExceptionHandlerMiddelware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            try
+            {
+                await _next(context);
+            }
+
+            catch (ValidationFailedDomainException exception)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await context.Response.WriteAsync(exception.Message);
+            }
+
+            catch (ForbbidenDomainException exception)
+            {
+                context.Response.StatusCode = (int)(HttpStatusCode.Forbidden);
+                await context.Response.WriteAsync(exception.Message);
+            }
+
+            catch(Exception exception)
+            {
+                context.Response.StatusCode = (int)((HttpStatusCode)HttpStatusCode.InternalServerError);
+                await context.Response.WriteAsync("An unexpected server error occurred.");
+            }
+        }
     }
 }
