@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Customer.Application.Commands.ProfileThumnail
+namespace MakFood.Customer.Application.Commands.ProfileThumbnail
 {
     public record RemoveProfileThumbnailCommand : IRequest<ProfileThumbnailcommandResponse>
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
     }
 }

@@ -42,12 +42,12 @@ namespace MakFood.Customer.Domain.UserAggregate
             }
         }
 
-        public void SetOrUpdateProfileThumbnail(string thumbnailPath)
+        public void SetOrUpdateProfileThumbnail(string Path)
         {
-            if (string.IsNullOrWhiteSpace(thumbnailPath))
+            if (string.IsNullOrWhiteSpace(Path))
                 throw new ValidationFailedDomainException("Profile thumbnail cannot be empty!");
 
-            ProfileThumbnail = thumbnailPath;
+            ProfileThumbnail = Path;
         }
 
         public void RemoveProfileThumbnail()

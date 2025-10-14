@@ -1,22 +1,35 @@
+using MakFood.Customer.Application.Commands.RegisterUser;
+using MakFood.Customer.Domain.UserAggregate.Contracts;
 using MakFood.Customer.Infrastructure.Persistence.Context;
+using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
+using MakFood.Customer.Infrastructure.Persistence.Repository;
 using MakFood.Customer.Infrastructure.Substructure.Settings;
 using MakFood.Customer.Middelware;
 using MassTransit;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionStringConfiguration = builder.Configuration.GetSection(nameof(ConnectionStrings));
+
+builder.Services.Configure<ConnectionStrings>(connectionStringConfiguration);
 
 builder.Services.AddControllers();
 
-var connectionStringConfiguration = builder.Configuration.GetSection(nameof(ConnectionStrings));
-builder.Services.Configure<ConnectionStrings>(connectionStringConfiguration);
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly);
+});
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     var connectionString = connectionStringConfiguration.Get<ConnectionStrings>()!;
-
     var connectionBuilder = new SqlConnectionStringBuilder
     {
         DataSource = connectionString.Server,
@@ -24,9 +37,11 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
         TrustServerCertificate = true,
         IntegratedSecurity = true
     };
-
     options.UseSqlServer(connectionBuilder.ConnectionString);
 });
+
+
+
 
 builder.Services.AddMassTransit(c =>
 {
@@ -37,22 +52,26 @@ builder.Services.AddMassTransit(c =>
     });
 });
 
-builder.Services.AddSwaggerGen();
-builder.Services.AddEndpointsApiExplorer();
 
 
 var app = builder.Build();
+app.UseRouting();
 
-app.UseMiddleware<ExceptionHandlerMiddelware>();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.UseSwaggerUI(options =>
+if (app.Environment.IsDevelopment())
 {
-    options.EnableTryItOutByDefault();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
 });
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+
 
 
 app.Run();
