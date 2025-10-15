@@ -4,7 +4,9 @@ using MakFood.Customer.Infrastructure.Persistence.Context;
 using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
 using MakFood.Customer.Infrastructure.Persistence.Repository;
 using MakFood.Customer.Infrastructure.Substructure.Settings;
+using MakFood.Customer.Middelware;
 using MassTransit;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -72,6 +74,18 @@ app.UseEndpoints(endpoints =>
 
 
 
+
+
+app.UseMiddleware<ExceptionHandlerMiddelware>();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.UseSwaggerUI(options =>
+{
+    options.EnableTryItOutByDefault();
+});
 
 
 app.Run();
