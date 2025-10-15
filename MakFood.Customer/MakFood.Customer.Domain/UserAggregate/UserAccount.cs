@@ -58,9 +58,9 @@ namespace MakFood.Customer.Domain.UserAggregate
             _addresses.Add(address);
         }
 
-        public bool RemoveAddress(Address address)
+        public void RemoveAddress(Address address)
         {
-            return _addresses.Remove(address);
+            _addresses.Remove(address);
         }
 
 

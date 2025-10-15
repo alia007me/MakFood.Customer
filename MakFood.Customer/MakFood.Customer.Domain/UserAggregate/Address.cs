@@ -47,7 +47,7 @@ namespace MakFood.Customer.Domain.UserAggregate
         public string PostalCode { get; private set; }
         public uint? UnitNo { get; set; }
 
-        #region NullOrEmptyValidations
+        #region Validations
 
         private void CheckTitleNullOrEmpty(string title)
         {

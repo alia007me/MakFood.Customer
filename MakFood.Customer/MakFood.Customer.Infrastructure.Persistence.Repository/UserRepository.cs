@@ -29,11 +29,5 @@ namespace MakFood.Customer.Infrastructure.Persistence.Repository
             return await _context.Users.Include(p => p.Addresses)
                                        .SingleOrDefaultAsync(c => c.Id == userId, ct);
         }
-
-        //public void DeleteUserAddress(Address address)
-        //{
-        //    _context.Users.Remove(address);
-        //}   
-
     }
 }
