@@ -1,8 +1,5 @@
-﻿using MakFood.Customer.Application.Commands.UpdateUser;
-using MassTransit.Internals;
-using MediatR;
-using System.Data;
-namespace MakFood.Customer.Application.Commands.AddUserAddress
+﻿using MediatR;
+namespace MakFood.Customer.Application.Commands.User.AddUserAddress
 {
     public class AddUserAddressCommand : IRequest<AddUserAddressCommandRespone>
     {

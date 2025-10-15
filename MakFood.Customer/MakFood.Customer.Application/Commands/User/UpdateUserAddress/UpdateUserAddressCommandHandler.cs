@@ -3,7 +3,7 @@ using MakFood.Customer.Domain.UserAggregate.Contracts;
 using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
 using MediatR;
 
-namespace MakFood.Customer.Application.Commands.UpdateUserAddress
+namespace MakFood.Customer.Application.Commands.User.UpdateUserAddress
 {
     public class UpdateUserAddressCommandHandler : IRequestHandler<UpdateUserAddressCommand, UpdateUserAddressCommandRespone>
     {

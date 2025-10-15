@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MakFood.Customer.Application.Commands.RegisterUser
+namespace MakFood.Customer.Application.Commands.User.RegisterUser
 {
     public record RegisterUserCommand : IRequest<RegisterUserCommandResponse>
     {

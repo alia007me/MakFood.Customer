@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MakFood.Customer.Application.Commands.RemoveUserAddress
+namespace MakFood.Customer.Application.Commands.User.RemoveUserAddress
 {
     public class RemoveUserAddressCommand : IRequest<RemoveUserAddressCommandRespone>
     {

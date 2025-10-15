@@ -3,35 +3,37 @@ using MakFood.Customer.Domain.UserAggregate.Contracts;
 using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
 using MediatR;
 
-namespace MakFood.Customer.Application.Commands.AddUserAddress
+namespace MakFood.Customer.Application.Commands.User.UpdateUserInformation
 {
-    public class AddUserAddressCommandHandler : IRequestHandler<AddUserAddressCommand, AddUserAddressCommandRespone>
+    public class UpdateUserInformationCommandHandler : IRequestHandler<UpdateUserInformationCommand, UpdateUserInformationCommandRespone>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public AddUserAddressCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public UpdateUserInformationCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<AddUserAddressCommandRespone> Handle(AddUserAddressCommand command, CancellationToken ct)
+        public async Task<UpdateUserInformationCommandRespone> Handle(UpdateUserInformationCommand command, CancellationToken ct)
         {
             var user = await _userRepository.GetUserById(command.UserId, ct);
             UserNullcheck(user);
 
-            AddUserAddressCommandRespone response = new AddUserAddressCommandRespone();
+            UpdateUserInformationCommandRespone respone = new UpdateUserInformationCommandRespone();
 
-            var newAddress = AddUserAddressMapper.ToModel(command);
-            user.AddAddress(newAddress);
+            var newIdentityInformation = UpdateUserInformationMapper.ToModel(command);
+
+            user.IdentityInformation.Update(newIdentityInformation);
 
             await _unitOfWork.Commit(ct);
 
-            response.Massage = "your Address successfully Added";
+            respone.Massage = "User Identity Information Updated!";
 
-            return response;
+            return respone;
+
         }
-
+        
         #region NullChecks
         private void UserNullcheck(UserAccount user)
         {
@@ -43,7 +45,10 @@ namespace MakFood.Customer.Application.Commands.AddUserAddress
 
 
         #endregion
+
     }
+
 }
+
 
 

@@ -1,6 +1,6 @@
 ﻿using MakFood.Customer.Domain.UserAggregate;
 
-namespace MakFood.Customer.Application.Commands.RegisterUser
+namespace MakFood.Customer.Application.Commands.User.RegisterUser
 {
     public static class RegisterUserMapper
     {

@@ -3,7 +3,7 @@ using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
 using MassTransit;
 using MediatR;
 
-namespace MakFood.Customer.Application.Commands.RegisterUser
+namespace MakFood.Customer.Application.Commands.User.RegisterUser
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, RegisterUserCommandResponse>
     {

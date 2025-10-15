@@ -1,4 +1,4 @@
-﻿namespace MakFood.Customer.Application.Commands.UpdateUserInformation
+﻿namespace MakFood.Customer.Application.Commands.User.UpdateUserInformation
 {
     public class UpdateUserInformationCommandRespone
     {

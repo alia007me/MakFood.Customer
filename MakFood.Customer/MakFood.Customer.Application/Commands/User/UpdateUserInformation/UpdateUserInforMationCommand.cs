@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MakFood.Customer.Application.Commands.UpdateUserInformation
+namespace MakFood.Customer.Application.Commands.User.UpdateUserInformation
 {
 
     public class UpdateUserInformationCommand : IRequest<UpdateUserInformationCommandRespone>

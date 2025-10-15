@@ -1,6 +1,6 @@
 ﻿using MakFood.Customer.Domain.UserAggregate;
 
-namespace MakFood.Customer.Application.Commands.UpdateUserInformation
+namespace MakFood.Customer.Application.Commands.User.UpdateUserInformation
 {
     public static class UpdateUserInformationMapper
     {

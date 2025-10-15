@@ -1,6 +1,6 @@
 ﻿using MakFood.Customer.Domain.UserAggregate;
 
-namespace MakFood.Customer.Application.Commands.UpdateUserAddress
+namespace MakFood.Customer.Application.Commands.User.UpdateUserAddress
 {
     public static class UpdateUserAddressCommandMapper
     {

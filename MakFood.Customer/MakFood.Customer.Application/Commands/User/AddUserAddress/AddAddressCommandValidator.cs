@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
-namespace MakFood.Customer.Application.Commands.AddUserAddress
+
+namespace MakFood.Customer.Application.Commands.User.AddUserAddress
 {
     public class AddAddressCommandValidator : AbstractValidator<AddUserAddressCommand>
     {

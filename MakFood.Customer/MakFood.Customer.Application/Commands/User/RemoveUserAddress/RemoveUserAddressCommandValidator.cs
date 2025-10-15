@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace MakFood.Customer.Application.Commands.RemoveUserAddress
+namespace MakFood.Customer.Application.Commands.User.RemoveUserAddress
 {
     public class RemoveUserAddressCommandValidator : AbstractValidator<RemoveUserAddressCommand>
     {

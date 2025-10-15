@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakFood.Customer.Application.Commands.UpdateUserAddress
+namespace MakFood.Customer.Application.Commands.User.UpdateUserAddress
 {
     public class UpdateUserAddressCommand : IRequest<UpdateUserAddressCommandRespone>
     {
