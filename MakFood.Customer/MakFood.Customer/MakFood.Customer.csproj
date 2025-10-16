@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Customer.Application\MakFood.Customer.Application.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Domain\MakFood.Customer.Domain.csproj" />
     <ProjectReference Include="..\MakFood.Customer.Infrastructure.DI\MakFood.Customer.Infrastructure.DI.csproj" />
     <ProjectReference Include="..\MakFood.Customer.Infrastructure.Persistence.Context\MakFood.Customer.Infrastructure.Persistence.Context.csproj" />
     <ProjectReference Include="..\MakFood.Customer.Infrastructure.Persistence.Repository\MakFood.Customer.Infrastructure.Persistence.Repository.csproj" />

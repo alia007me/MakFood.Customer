@@ -1,4 +1,5 @@
 using MakFood.Customer.Application.Commands.RegisterUser;
+using MakFood.Customer.Domain.UserAggregate;
 using MakFood.Customer.Domain.UserAggregate.Contracts;
 using MakFood.Customer.Infrastructure.Persistence.Context;
 using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
@@ -26,6 +27,7 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
@@ -71,7 +73,13 @@ app.UseEndpoints(endpoints =>
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
+ContactInformation contactifo = new ContactInformation("09364587122");
+IdentityInformation identityInformation = new IdentityInformation("reza", "javadi");
+AccountInformation accountInformation = new AccountInformation();
+
+UserAccount ali = new UserAccount(contactifo, identityInformation, accountInformation);
 
 
 
 app.Run();
+

@@ -6,12 +6,12 @@ namespace MakFood.Customer.Presentation.ApiControllers.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProfileThumbnailController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
 
 
-    public ProfileThumbnailController(IMediator mediator)
+    public UserController(IMediator mediator)
     {
         _mediator = mediator;
     }
