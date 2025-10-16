@@ -73,11 +73,7 @@ app.UseEndpoints(endpoints =>
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
-ContactInformation contactifo = new ContactInformation("09364587122");
-IdentityInformation identityInformation = new IdentityInformation("reza", "javadi");
-AccountInformation accountInformation = new AccountInformation();
 
-UserAccount ali = new UserAccount(contactifo, identityInformation, accountInformation);
 
 
 
