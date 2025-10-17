@@ -1,4 +1,6 @@
-using MakFood.Customer.Application.Commands.RegisterUser;
+using MakFood.Customer.Application.Commands.Friendship.CreateFriendship;
+using MakFood.Customer.Application.Commands.User.RegisterUser;
+using MakFood.Customer.Domain.FriendshipAggregate.Contracts;
 using MakFood.Customer.Domain.UserAggregate.Contracts;
 using MakFood.Customer.Infrastructure.Persistence.Context;
 using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
@@ -6,7 +8,6 @@ using MakFood.Customer.Infrastructure.Persistence.Repository;
 using MakFood.Customer.Infrastructure.Substructure.Settings;
 using MakFood.Customer.Middelware;
 using MassTransit;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,11 +24,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(CreateFriendshipCommand).Assembly);
 });
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IFriendshipRepository, FriendshipRepository>();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {

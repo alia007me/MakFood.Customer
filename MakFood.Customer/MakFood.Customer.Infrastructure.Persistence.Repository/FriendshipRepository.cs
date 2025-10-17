@@ -20,6 +20,20 @@ namespace MakFood.Customer.Infrastructure.Persistence.Repository
             _context.Friendships.Add(friendship);
         }
 
+        public async Task<Friendship?> CanCreateFriendship(Guid userSender, Guid userReceiver)
+        {
+            return await _context.Friendships.FromSqlRaw(@"
+                                                            SELECT F.* FROM Friendships AS F
+
+                                                            WHERE 
+	                                                              (SELECT TOP 1 Discriminator 
+	                                                               FROM FriendshipState 
+	                                                               WHERE F.Id = FriendshipId
+	                                                               ORDER BY CreationDateTime) IN ('AcceptedFriendshipState', 'RequestedFriendshipState')
+                                                          ").Include(c => c.StateHistory)
+                                             .SingleOrDefaultAsync(f => (f.SenderId == userSender && f.RecieverId == userReceiver) || (f.RecieverId == userSender && f.SenderId == userReceiver));
+        }
+
         public async Task<List<Friendship>> GetAllFriendships(Guid userId, CancellationToken ct)
         {
             return await _context.Friendships
@@ -31,7 +45,8 @@ namespace MakFood.Customer.Infrastructure.Persistence.Repository
 
         public async Task<Friendship?> GetFriendshipById(Guid id, CancellationToken ct)
         {
-            return await _context.Friendships.SingleOrDefaultAsync(c => c.Id == id, ct);
+            return await _context.Friendships.Include(c => c.StateHistory)
+                                             .SingleOrDefaultAsync(c => c.Id == id, ct);
         }
 
         public async Task<List<Friendship>> GetFriendshipRequests(Guid recieverId, CancellationToken ct)
@@ -42,5 +57,6 @@ namespace MakFood.Customer.Infrastructure.Persistence.Repository
                                  .Where(c => c.StateHistory.Any(c => c.Status == FiendshipStatus.Requested))
                                  .ToListAsync(ct);
         }
+
     }
 }
