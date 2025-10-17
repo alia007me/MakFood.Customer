@@ -1,25 +1,47 @@
+
+﻿using Microsoft.AspNetCore.Mvc;
+using MakFood.Customer.Application.Commands.ProfileThumbnail;
 ﻿using MakFood.Customer.Application.Commands.User.AddUserAddress;
 using MakFood.Customer.Application.Commands.User.RegisterUser;
 using MakFood.Customer.Application.Commands.User.RemoveUserAddress;
 using MakFood.Customer.Application.Commands.User.UpdateUserAddress;
 using MakFood.Customer.Application.Commands.User.UpdateUserInformation;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
-namespace MakFood.Customer.Controllers
+
+
+[ApiController]
+[Route("[controller]")]
+public class UserController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    private readonly IMediator _mediator;
 
-    public class UserController : ControllerBase
+
+    public UserController(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public UserController(IMediator mediator)
+    [HttpPatch("{userId}/Profile/Thumbnail")]
+    public async Task<IActionResult> SetOrUpdate([FromBody] SetOrUpdateProfileThumbnailCommand command)
+    {
+        
+        var response = await _mediator.Send(command);
+        return Ok(response);
+    }
+
+
+    [HttpDelete("{userId}/Profile/Thumbnail")]
+    public async Task<IActionResult> Remove(Guid userId)
+    {
+        var command = new RemoveProfileThumbnailCommand
         {
-            _mediator = mediator;
-        }
+            UserId = userId,
+            
+        };
 
+        var response = await _mediator.Send(command);
+        return Ok(response);
 
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserCommand command, CancellationToken ct)
@@ -75,6 +97,7 @@ namespace MakFood.Customer.Controllers
 
             return Ok(target);
         }
+
 
 
 

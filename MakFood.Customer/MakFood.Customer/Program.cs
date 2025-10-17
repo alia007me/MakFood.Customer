@@ -1,3 +1,5 @@
+using MakFood.Customer.Application.Commands.RegisterUser;
+using MakFood.Customer.Domain.UserAggregate;
 using MakFood.Customer.Application.Commands.Friendship.CreateFriendship;
 using MakFood.Customer.Application.Commands.User.RegisterUser;
 using MakFood.Customer.Domain.FriendshipAggregate.Contracts;
@@ -30,12 +32,15 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
+
 builder.Services.AddScoped<IFriendshipRepository, FriendshipRepository>();
+
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     var connectionString = connectionStringConfiguration.Get<ConnectionStrings>()!;
-
     var connectionBuilder = new SqlConnectionStringBuilder
     {
         DataSource = connectionString.Server,
@@ -43,7 +48,6 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
         TrustServerCertificate = true,
         IntegratedSecurity = true
     };
-
     options.UseSqlServer(connectionBuilder.ConnectionString);
 });
 
@@ -64,6 +68,7 @@ builder.Services.AddMassTransit(c =>
 var app = builder.Build();
 app.UseRouting();
 
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -79,16 +84,24 @@ app.UseEndpoints(endpoints =>
 
 
 
-app.UseMiddleware<ExceptionHandlerMiddelware>();
 
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.UseSwaggerUI(options =>
+if (app.Environment.IsDevelopment())
 {
-    options.EnableTryItOutByDefault();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
 });
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+
+
 
 
 app.Run();
+
