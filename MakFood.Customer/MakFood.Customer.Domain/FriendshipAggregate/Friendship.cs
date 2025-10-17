@@ -20,6 +20,10 @@ namespace MakFood.Customer.Domain.FriendshipAggregate
             SenderName = senderName;
             RecieverId = recieverId;
             SenderId = senderId;
+
+            _stateHistory.Add(new RequestedFriendshipState());
+
+
         }
 
         public string RecieverName { get; private set; }
@@ -27,10 +31,10 @@ namespace MakFood.Customer.Domain.FriendshipAggregate
         public Guid RecieverId { get; private set; }
         public Guid SenderId { get; private set; }
 
+        public FriendshipState CurrentState => _stateHistory.OrderByDescending(c => c.CreationDateTime).First();
         public bool Activated => CurrentState.Status == FiendshipStatus.Accepted;
 
         public IReadOnlyCollection<FriendshipState> StateHistory => _stateHistory.AsReadOnly();
-        public FriendshipState CurrentState => _stateHistory.OrderByDescending(c => c.CreationDateTime).First();
 
         #region Validations
 
@@ -46,7 +50,7 @@ namespace MakFood.Customer.Domain.FriendshipAggregate
                 throw new ValidationFailedDomainException("Sender name can not be empty!");
         }
 
-        #endregion
+        #endregion  
 
         #region Behaviors
 

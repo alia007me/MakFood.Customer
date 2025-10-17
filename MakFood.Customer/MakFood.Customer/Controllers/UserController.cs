@@ -1,11 +1,9 @@
-﻿using MakFood.Customer.Application.Commands.AddUserAddress;
-using MakFood.Customer.Application.Commands.RegisterUser;
-using MakFood.Customer.Application.Commands.RemoveUserAddress;
-using MakFood.Customer.Application.Commands.UpdateUser;
-using MakFood.Customer.Application.Commands.UpdateUserAddress;
-using MakFood.Customer.Application.Commands.UpdateUserInformation;
+﻿using MakFood.Customer.Application.Commands.User.AddUserAddress;
+using MakFood.Customer.Application.Commands.User.RegisterUser;
+using MakFood.Customer.Application.Commands.User.RemoveUserAddress;
+using MakFood.Customer.Application.Commands.User.UpdateUserAddress;
+using MakFood.Customer.Application.Commands.User.UpdateUserInformation;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MakFood.Customer.Controllers
@@ -77,6 +75,8 @@ namespace MakFood.Customer.Controllers
 
             return Ok(target);
         }
+
+
 
 
     }
