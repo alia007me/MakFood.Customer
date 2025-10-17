@@ -1,5 +1,3 @@
-using MakFood.Customer.Application.Commands.RegisterUser;
-using MakFood.Customer.Domain.UserAggregate;
 using MakFood.Customer.Application.Commands.Friendship.CreateFriendship;
 using MakFood.Customer.Application.Commands.User.RegisterUser;
 using MakFood.Customer.Domain.FriendshipAggregate.Contracts;
