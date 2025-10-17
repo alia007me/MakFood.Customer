@@ -1,5 +1,8 @@
 using MakFood.Customer.Application.Commands.RegisterUser;
 using MakFood.Customer.Domain.UserAggregate;
+using MakFood.Customer.Application.Commands.Friendship.CreateFriendship;
+using MakFood.Customer.Application.Commands.User.RegisterUser;
+using MakFood.Customer.Domain.FriendshipAggregate.Contracts;
 using MakFood.Customer.Domain.UserAggregate.Contracts;
 using MakFood.Customer.Infrastructure.Persistence.Context;
 using MakFood.Customer.Infrastructure.Persistence.Context.Transactions;
@@ -9,6 +12,7 @@ using MakFood.Customer.Middelware;
 using MassTransit;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionStringConfiguration = builder.Configuration.GetSection(nameof(ConnectionStrings));
@@ -22,11 +26,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(CreateFriendshipCommand).Assembly);
 });
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
+
+builder.Services.AddScoped<IFriendshipRepository, FriendshipRepository>();
 
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -58,6 +67,23 @@ builder.Services.AddMassTransit(c =>
 
 var app = builder.Build();
 app.UseRouting();
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+
+
+
+
 
 if (app.Environment.IsDevelopment())
 {

@@ -31,5 +31,13 @@
         /// </summary>
         /// <param name="friendship">اطلاعات دوستی</param>
         public void AddFriendship(Friendship friendship);
+
+        /// <summary>
+        /// برسی می کند که آیا کاربر دوستی فعال یا درخواست شده دارند یا خیر
+        /// </summary>
+        /// <param name="user1">کاربر 1</param>
+        /// <param name="user2">کاربر 2</param>
+        /// <returns>دوستی را که ممکن است وجود نداشته باشد را بر میگرداند</returns>
+        public Task<Friendship?> CanCreateFriendship(Guid user1,Guid user2);
     }
 }

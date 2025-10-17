@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="MassTransit" Version="8.5.4" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.4" />
-    
-    <Folder Include="Queries\" />
+	<PackageReference Include="MediatR" Version="13.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MakFood.Customer.Domain\MakFood.Customer.Domain.csproj" />
     <ProjectReference Include="..\MakFood.Customer.Infrastructure.Persistence.Context\MakFood.Customer.Infrastructure.Persistence.Context.csproj" />
+    <ProjectReference Include="..\MakFood.Customer.Infrastructure.Persistence.Repository\MakFood.Customer.Infrastructure.Persistence.Repository.csproj" />
   </ItemGroup>
 
 </Project>

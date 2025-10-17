@@ -1,4 +1,5 @@
 ﻿using MakFood.Customer.Infrastructure.Substructure.Exceptions;
+using System.Data;
 
 namespace MakFood.Customer.Domain.UserAggregate
 {
@@ -21,6 +22,7 @@ namespace MakFood.Customer.Domain.UserAggregate
         {
             CheckFirstNameNullOrEmpty(firstName);
             CheckLastNameNullOrEmpty(lastName);
+            CheckBirthDate(birthDate);
 
             FirstName = firstName;
             LastName = lastName;
@@ -47,18 +49,37 @@ namespace MakFood.Customer.Domain.UserAggregate
                 throw new ValidationFailedDomainException("Last name can not be empty!");
         }
 
+        private void CheckBirthDate(DateOnly? birthDate)
+        {
+            if (birthDate.HasValue)
+            {
+                DateOnly minLimit = DateOnly.FromDateTime(DateTime.Now).AddYears(-150);
+                DateOnly maxLimit = DateOnly.FromDateTime(DateTime.Now).AddDays(-1);
+
+                if (birthDate < minLimit || birthDate > maxLimit) throw new Exception("Invalid BitrhDate");
+            }
+
+        }
+
         #endregion
 
         #region Behaviors
 
-        public void UpdateName(string firstName, string lastName)
+        
+        public void Update(IdentityInformation newidentityInformation)
         {
-            CheckFirstNameNullOrEmpty(firstName);
-            CheckLastNameNullOrEmpty(lastName);
 
-            FirstName = firstName;
-            LastName = lastName;
+            CheckFirstNameNullOrEmpty(newidentityInformation.FirstName);
+            CheckLastNameNullOrEmpty(newidentityInformation.LastName);
+            CheckBirthDate(newidentityInformation.BirthDate);
+
+            FirstName = newidentityInformation.FirstName;
+            LastName = newidentityInformation.LastName;
+            BirthDate = newidentityInformation.BirthDate;
+
         }
+
+
 
         #endregion
     }
