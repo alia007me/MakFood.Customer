@@ -77,7 +77,7 @@ namespace MakFood.Customer.Infrastructure.Persistence.Context.Migrations
                     Plaque = table.Column<long>(type: "bigint", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UnitNo = table.Column<long>(type: "bigint", nullable: true),
-                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

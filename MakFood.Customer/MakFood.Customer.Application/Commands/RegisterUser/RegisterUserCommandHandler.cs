@@ -22,16 +22,24 @@ namespace MakFood.Customer.Application.Commands.RegisterUser
         {
             var user = command.ToModel();
 
+            await UserByNumberExist(user.ContactInformation.PhoneNumber,ct);
+
             _userRepository.AddUser(user);
 
             await _unitOfWork.Commit(ct);
 
-            await _publishEndpoint.Publish<UserRegisteredMessage>(command.ToMessage());
+            
 
             return new RegisterUserCommandResponse
             {
                 UserId = user.Id
             };
+        }
+        private async Task UserByNumberExist(string phoneNumber,CancellationToken ct)
+        {
+            var target = await _userRepository.GetUserByPhoneNumber(phoneNumber, ct);
+
+            if (target != null) throw new Exception("This user exists with this phone number!");
         }
     }
 }

@@ -19,9 +19,15 @@ namespace MakFood.Customer.Infrastructure.Persistence.Repository
             _context.Users.Add(user);
         }
 
+        public async Task<UserAccount?> GetUserByPhoneNumber(string phoneNumber, CancellationToken ct)
+        {
+            return await _context.Users.SingleOrDefaultAsync(c => c.ContactInformation.PhoneNumber == phoneNumber,ct);
+        }
+
         public async Task<UserAccount?> GetUserById(Guid userId, CancellationToken ct)
         {
-            return await _context.Users.SingleOrDefaultAsync(c => c.Id == userId, ct);
+            return await _context.Users.Include(p => p.Addresses)
+                                       .SingleOrDefaultAsync(c => c.Id == userId, ct);
         }
     }
 }
