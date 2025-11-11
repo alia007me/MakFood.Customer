@@ -1,3 +1,5 @@
+using FluentValidation;
+using MakFood.Customer.Application.Behavior;
 using MakFood.Customer.Application.Commands.Friendship.CreateFriendship;
 using MakFood.Customer.Application.Commands.User.RegisterUser;
 using MakFood.Customer.Domain.FriendshipAggregate.Contracts;
@@ -8,8 +10,10 @@ using MakFood.Customer.Infrastructure.Persistence.Repository;
 using MakFood.Customer.Infrastructure.Substructure.Settings;
 using MakFood.Customer.Middelware;
 using MassTransit;
+using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +31,9 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CreateFriendshipCommand).Assembly);
 });
 
+builder.Services.AddValidatorsFromAssembly(typeof(CreateFriendshipCommandValidator).Assembly);
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>) , typeof(ValidationBehavior<,>));
+
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -40,7 +47,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     var connectionString = connectionStringConfiguration.Get<ConnectionStrings>()!;
     var connectionBuilder = new SqlConnectionStringBuilder
-    {
+    { 
         DataSource = connectionString.Server,
         InitialCatalog = connectionString.InitialCatalog,
         TrustServerCertificate = true,
