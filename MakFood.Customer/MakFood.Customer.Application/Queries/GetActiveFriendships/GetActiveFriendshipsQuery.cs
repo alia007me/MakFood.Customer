@@ -1,7 +1,6 @@
-﻿using MakFood.Customer.Application.Queries.GetActiveFriendships;
-using MediatR;
+﻿using MediatR;
 
-namespace MakFood.Customer.Application.Queries.GetRequests
+namespace MakFood.Customer.Application.Queries.GetActiveFriendships
 {
     public class GetActiveFriendshipsQuery : IRequest<List<GetActiveFriendshipsDto>>
     {

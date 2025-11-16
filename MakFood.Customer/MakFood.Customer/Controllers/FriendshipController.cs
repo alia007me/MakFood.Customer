@@ -5,6 +5,7 @@ using MakFood.Customer.Application.Commands.Friendship.RevokeFriendship;
 using MakFood.Customer.Application.Queries.GetActiveFriendships;
 using MakFood.Customer.Application.Queries.GetRequests;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MakFood.Customer.Controllers
@@ -72,6 +73,7 @@ namespace MakFood.Customer.Controllers
             return Ok();
         }
 
+
         [HttpGet("{userId}/Friendships/requests")]
         public async Task<ActionResult<List<GetRequestDto>>> GetUserFriendshipRequests(Guid userId)
         {
@@ -82,6 +84,7 @@ namespace MakFood.Customer.Controllers
             return Ok(results);
         }
 
+        [Authorize]
         [HttpGet("{userId}/Friendships/Accepteds")]
         public async Task<ActionResult<List<GetActiveFriendshipsDto>>> GetUserActiveFriendships(Guid userId)
         {

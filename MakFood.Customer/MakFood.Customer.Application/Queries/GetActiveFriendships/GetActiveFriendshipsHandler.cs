@@ -1,9 +1,8 @@
-﻿using MakFood.Customer.Application.Queries.GetActiveFriendships;
-using MakFood.Customer.Infrastructure.Persistence.Context;
+﻿using MakFood.Customer.Infrastructure.Persistence.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace MakFood.Customer.Application.Queries.GetRequests
+namespace MakFood.Customer.Application.Queries.GetActiveFriendships
 {
     public class GetActiveFriendshipsHandler : IRequestHandler<GetActiveFriendshipsQuery, List<GetActiveFriendshipsDto>>
     {

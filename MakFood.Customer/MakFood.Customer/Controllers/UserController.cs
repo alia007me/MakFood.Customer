@@ -7,6 +7,10 @@ using MakFood.Customer.Application.Commands.User.RemoveUserAddress;
 using MakFood.Customer.Application.Commands.User.UpdateUserAddress;
 using MakFood.Customer.Application.Commands.User.UpdateUserInformation;
 using MediatR;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using MakFood.Customer.Application.Commands.Login;
+using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -30,6 +34,15 @@ public class UserController : ControllerBase
         return Ok(response);
     }
 
+    [HttpPost("login")]
+    public async Task<IActionResult> LoginMember([FromBody] LoginRequest request,CancellationToken ct)
+    {
+        var command = new LoginCommand(request.phonenumber, request.FirstName);
+
+        var token = await _mediator.Send(command,ct);
+
+        return Ok(token);
+    }
 
     [HttpDelete("{userId}/Profile/Thumbnail")]
     public async Task<IActionResult> Remove(Guid userId)
@@ -43,6 +56,7 @@ public class UserController : ControllerBase
         var response = await _mediator.Send(command);
         return Ok(response);
     }
+
     [HttpPost]
     public async Task<IActionResult> RegisterUser([FromBody] RegisterUserCommand command, CancellationToken ct)
     {
